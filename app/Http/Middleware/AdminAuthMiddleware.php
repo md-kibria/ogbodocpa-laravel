@@ -19,7 +19,7 @@ class AdminAuthMiddleware
         // Check if user is authenticated and has 'admin' or 'super' role
         if (!Auth::guard('web')->check() || (Auth::user()->role !== 'admin') || (Auth::user()->status !== 'active')) { //&& Auth::user()->role !== 'super'
             
-            // return redirect()->route('home')->with('error', 'Unauthorized access');
+            return redirect()->route('home')->with('error', 'Unauthorized access');
         }
         return $next($request);
     }

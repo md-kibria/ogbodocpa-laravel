@@ -17,14 +17,14 @@
 
     <link rel="stylesheet" href="https://icono-49d6.kxcdn.com/icono.min.css">
 
-    <script src="/tinymce/tinymce.min.js"></script>
+    <script src="{{url('/tinymce/tinymce.min.js')}}"></script>
 
     <x-admin.style />
 
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="/js/alpine.min.js"></script>
+    <script src="{{url('/js/alpine.min.js')}}"></script>
     @vite('resources/css/app.css')
 
 
@@ -78,7 +78,7 @@
 
     <x-flash-message />
 
-    <script src="/js/main.js"></script>
+    <script src="{{url('/js/main.js')}}"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 

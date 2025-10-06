@@ -39,7 +39,7 @@
             <li class="relative group">
                 <a class="h-full" href="{{ route('admin.dashboard') }}">
                     <img class="h-10 w-10 rounded-full ring-1"
-                        src="{{ Auth::user()->image ? asset('/storage/' . Auth::user()->image) : '/img/profile.png' }}"
+                        src="{{ Auth::user()->image ? asset('/storage/' . Auth::user()->image) : asset('/img/profile.png') }}"
                         alt="">
                 </a>
                 <div
