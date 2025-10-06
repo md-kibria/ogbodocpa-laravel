@@ -7,8 +7,11 @@
                 class="absolute top-0 left-0 w-full h-full object-cover opacity-30 -z-10">
         @endif
         <div class="container mx-auto py-20 sm:py-0">
-            <span class="text-blue-400 text-md sm:text-lg uppercase leading-10 w-full block text-center sm:text-left pb-2 sm:pb-0">{{ $header->sub_title }}</span>
-            <h1 class="text-4xl sm:text-5xl font-semibold text-white leading-10 sm:leading-14 w-full md:max-w-4xl text-center sm:text-left">{{ $header->title }}</h1>
+            <span
+                class="text-blue-400 text-md sm:text-lg uppercase leading-10 w-full block text-center sm:text-left pb-2 sm:pb-0">{{ $header->sub_title }}</span>
+            <h1
+                class="text-4xl sm:text-5xl font-semibold text-white leading-10 sm:leading-14 w-full md:max-w-4xl text-center sm:text-left">
+                {{ $header->title }}</h1>
             <p class="text-gray-300 w-full md:max-w-3xl py-5 text-center sm:text-left">{{ $header->description }}</p>
             <div class="flex gap-2 py-5 justify-center sm:justify-start">
                 <a href="{{ route('contact') }}"
@@ -24,16 +27,20 @@
 
 
 
-    <section class="container mx-auto py-20 px-2 md:px-10">
-        <h2 class="text-3xl font-semibold text-center mb-10 text-slate-600">Our Services</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+    @if(count($services_list) !== 0)
+    <section class="container mx-auto py-20 px-5 md:px-10 lg:px-22">
+        <h2 class="text-3xl font-semibold text-center mb-16 text-slate-600">Our Services</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-10">
             @foreach ($services_list as $item)
                 <div class="bg-transparent ">
-                    <img src="{{ asset('/storage/' . $item->image) }}" alt="" class="w-full h-40 mb-4 mx-auto">
+                    <div class="h-40 w-full overflow-hidden mb-4 rounded-sm">
+                        <img src="{{ asset('/storage/' . $item->image) }}" alt=""
+                            class="w-full h-40 mx-auto object-cover transform transition-transform duration-500 hover:scale-110">
+                    </div>
                     <a href="{{ route('service', $item->slug) }}">
-                        <h3 class="text-xl font-semibold mb-2 text-slate-700 text-left">{{ $item->title }}</h3>
+                        <h3 class="text-2xl font-semibold mb-2 text-slate-700 text-left">{{ $item->title }}</h3>
                     </a>
-                    <p class="text-gray-600 text-left">
+                    <p class="text-gray-600 text-left text-sm">
                         {{ \Illuminate\Support\Str::words(html_entity_decode(strip_tags($item->description)), 20) }}</p>
                     <a href="{{ route('service', $item->slug) }}" aria-label="Learn more about {{ $item->name }}"
                         class="text-blue-500 mt-2 flex items-center gap-1 hover:gap-3 transition-all">
@@ -42,23 +49,24 @@
                     </a>
 
                 </div>
-                
             @endforeach
         </div>
     </section>
+    @endif
 
     <section class="">
         <div class="flex flex-col md:flex-row items-center justify-center gap-10 px-10 py-20 bg-gray-100">
             <div class="relative z-20">
-                <img class="w-full h-[400px] md:w-[500px] md:h-[600px] object-cover rounded-4xl z-20" src="{{ $philosophy->imageUrl }}"
-                    alt="">
+                <img class="w-full h-[400px] md:w-[400px] md:h-[500px] object-cover rounded-4xl z-20"
+                    src="{{ $philosophy->imageUrl }}" alt="">
                 <div
                     class="border-2 border-dashed border-slate-500 pr-5 pb-5 -pl-5 rounded-[45px] absolute top-5 left-5 -right-5 -bottom-5 -z-10">
                 </div>
             </div>
             <div class="text-center sm:text-left">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-600 text-center sm:text-left">{{ $philosophy->title }}</h2>
-                <p class="text-lg text-gray-500 mb-6 max-w-2xl text-center sm:text-left">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-600 text-center sm:text-left">
+                    {{ $philosophy->title }}</h2>
+                <p class="text-lg text-gray-500 mb-8 max-w-2xl text-center sm:text-left">
                     {{ $philosophy->description }}
                 </p>
 
@@ -80,7 +88,7 @@
         <div class="flex flex-col md:flex-row items-center justify-center gap-10 px-10 py-20">
             <div class="text-center sm:text-left">
                 <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-600">{{ $appointment->title }}</h2>
-                <p class="text-lg text-gray-500 mb-6 max-w-2xl">
+                <p class="text-lg text-gray-500 mb-8 max-w-2xl">
                     {{ $appointment->description }}
                 </p>
 

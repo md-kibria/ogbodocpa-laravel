@@ -79,7 +79,7 @@ class AdminPageController extends Controller
                 'service_1' => $request->service_1,
                 'service_2' => $request->service_2,
                 'service_3' => $request->service_3,
-                'service_4' => $request->service_4,
+                // 'service_4' => $request->service_4,
             ]);
         }
 

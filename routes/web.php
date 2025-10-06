@@ -10,7 +10,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -99,13 +98,4 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
     Route::get('/settings', [AdminPageController::class, 'settings'])->name('settings');
     Route::post('/settings-update', [AdminPageController::class, 'settingUpdate'])->name('settings.update');
     Route::post('/settings-media-update', [AdminPageController::class, 'settingMediaUpdate'])->name('settings.media.update');
-});
-
-// Route for clear cache, views, config, route
-Route::get('/clear', function () {
-    Artisan::call('cache:clear');
-    Artisan::call('view:clear');
-    Artisan::call('config:clear');
-    Artisan::call('route:clear');
-    return "Cleared!";
 });
