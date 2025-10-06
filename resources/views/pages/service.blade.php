@@ -1,7 +1,9 @@
 @extends('layouts.main')
 
 @section('title', $service->title)
-@section('description', $service->content)
+@section('description', $service->seo_description ?? $service->description)
+@section('keywords', $service->seo_keywords)
+
 
 @section('content')
     <div

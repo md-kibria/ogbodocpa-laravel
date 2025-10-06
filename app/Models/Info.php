@@ -19,5 +19,6 @@ class Info extends Model
         'email',
         'phone',
         'address',
+        'is_appointment'
     ];
 }

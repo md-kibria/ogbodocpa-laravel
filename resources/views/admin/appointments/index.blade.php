@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Users')
-@section('header', 'Users')
+@section('title', 'Appointments')
+@section('header', 'Appointments')
 
 @section('content')
 
@@ -12,26 +12,33 @@
             <thead>
                 <tr>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Id</th>
-                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Name</th>
+                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">User</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Email</th>
-                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Appointments</th>
-                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Join</th>
+                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Service</th>
+                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Consultain</th>
+                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Date</th>
+                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Schedule</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Status</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Action</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($users as $item)
+                @foreach ($appointments as $item)
                     <tr class="even:bg-slate-600">
                         <td class="border border-slate-700 p-3">{{ $item->id }}</td>
-                        <td class="border border-slate-700 p-3">{{ $item->first_name }}</td>
-                        <td class="border border-slate-700 p-3">{{ $item->email }}</td>
-                        <td class="border border-slate-700 p-3">{{ count($item->appointments) }}</td>
+                        <td class="border border-slate-700 p-3">{{ $item->user->name }}</td>
+                        <td class="border border-slate-700 p-3">{{ $item->user->email }}</td>
+                        <td class="border border-slate-700 p-3">{{ $item->service->title }}</td>
+                        <td class="border border-slate-700 p-3">{{ $item->consultain->name }}</td>
                         <td class="border border-slate-700 p-3">
-                            {{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}
+                            {{ \Carbon\Carbon::parse($item->date)->toFormattedDateString() }}
                         </td>
                         <td class="border border-slate-700 p-3">
-                            @if ($item->status === 'active')
+                            {{ \Carbon\Carbon::createFromFormat('H:i:s', $item->schedule->start_time)->format('h:i A') }} <br/> to
+                            {{ \Carbon\Carbon::createFromFormat('H:i:s', $item->schedule->end_time)->format('h:i A') }}
+                        </td>
+                        <td class="border border-slate-700 p-3">
+                            @if ($item->status === 'confirmed' || $item->status === 'active')
                                 <p class="bg-green-200 text-green-600 text-center rounded-md capitalize w-fit px-2 mx-auto">
                                     {{ $item->status }}
                                 </p>
@@ -44,23 +51,23 @@
                                     {{ $item->status }}</p>
                             @endif
                         </td>
-                        <td class="border border-slate-700 p-3 flex items-center justify-center">
+                        <td class="border border-slate-700 p-3">
                             <span
                                 class="inline-flex divide-x divide-gray-300 overflow-hidden rounded border border-gray-300 bg-white shadow-sm">
-                                <a href="{{ route('admin.users.show', $item->id) }}"
+                                {{-- <a href="{{ route('admin.users.show', $item->id) }}"
                                     class="bg-blue-500 hover:bg-blue-400 cursor-pointer px-3 py-1.5 text-sm font-medium text-gray-100 transition-colors hover:text-gray-900 focus:relative">
                                     Profile
-                                </a>
+                                </a> --}}
 
 
-                                <form action="{{ route('admin.users.destroy', $item->id) }}"
-                                    onsubmit="return confirm('Are you sure you want to delete?')" method="POST">
+                                <form action="{{ route('admin.appointments.cancel', $item->id) }}"
+                                    onsubmit="return confirm('Are you sure you want to cancel?')" method="POST">
                                     @csrf
-                                    @method('DELETE')
+                                    @method('PUT')
 
                                     <button type="submit"
                                         class="bg-red-400 hover:bg-red-300 cursor-pointer px-3 py-1.5 text-sm font-medium text-gray-100 transition-colors hover:text-gray-900 focus:relative">
-                                        Delete
+                                        Cancel
                                     </button>
                                 </form>
                             </span>
@@ -71,7 +78,7 @@
             </tbody>
         </table>
         <div class="text-white">
-            {{ $users->links('pagination::tailwind') }}
+            {{ $appointments->links('pagination::tailwind') }}
         </div>
 
     </div>

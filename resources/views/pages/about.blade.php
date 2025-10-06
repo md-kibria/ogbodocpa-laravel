@@ -1,2 +1,2 @@
-<x-page :title="$page->name" description="" :content="$page->content">
+<x-page :title="$page->name" :description="$page->content" :content="$page->content">
 </x-page>

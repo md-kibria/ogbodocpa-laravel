@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ConsultainController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProfileController;
@@ -16,15 +17,24 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/services', [PageController::class, 'services'])->name('services');
 Route::get('/services/{service:slug}', [PageController::class, 'service'])->name('service');
 Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/appointment', [PageController::class, 'appointment'])->name('appointment');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/resources', [PageController::class, 'resources'])->name('resources');
 
 Route::post('/message', [MessageController::class, 'store'])->name('message.store');
 
+Route::get('/api/appointment/service/{service}', [PageController::class, 'appointmentConsultain']);
+Route::get('/api/appointment/consultain/{consultain}', [PageController::class, 'consultainSchedule']);
+Route::get('/api/appointment/preview', [PageController::class, 'appointmentPreview'])->name('appointment.preview');
+Route::get('/api/appointment/confirm', [PageController::class, 'appointmentConfirm'])->name('appointment.confirm');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
+    
+    Route::get('/profile/appointments', [ProfileController::class, 'appointments'])->name('profile.appointments');
+    Route::put('/profile/appointments/cancel/{appointment}', [AdminPageController::class, 'appointmentCancel'])->name('profile.appointments.cancel');
 
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
@@ -36,7 +46,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/register', [AuthController::class, 'register'])->name('register');
 });
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
     Route::get('/', [AdminPageController::class, 'admin'])->name('index');
     Route::get('/dashboard', [AdminPageController::class, 'dashboard'])->name('dashboard');
 
@@ -45,6 +55,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
     Route::resource('/resources', ResourceController::class)
         ->except(['show'])->names('resources');
+
+    Route::resource('/consultains', ConsultainController::class)
+        ->names('consultains');
+
+    Route::post('/consultains/{consultain}/schedules', [ConsultainController::class, 'schedulesStore'])->name('consultains.schedules.store');
+    Route::delete('/consultains/schedules/{schedule}', [ConsultainController::class, 'schedulesDelete'])->name('consultains.schedules.destroy');
+
+    Route::get('/appointments', [AdminPageController::class, 'appointments'])->name('appointments.index');
+    Route::put('/appointments/cancel/{appointment}', [AdminPageController::class, 'appointmentCancel'])->name('appointments.cancel');
 
     Route::get('/home-page', [AdminPageController::class, 'homePage'])->name('home');
     Route::post('/home-page', [AdminPageController::class, 'homePageUpdate'])->name('home.update');

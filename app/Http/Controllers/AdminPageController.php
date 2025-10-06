@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
+use App\Models\Consultain;
 use App\Models\HomepageContent;
 use App\Models\Info;
 use App\Models\Media;
 use App\Models\Page;
 use App\Models\Service;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class AdminPageController extends Controller
@@ -18,8 +22,38 @@ class AdminPageController extends Controller
     }
 
     public function dashboard()
+    {   
+        $appointmentsCount = Appointment::count();
+        $servicesCount = Service::count();
+        $usersCount = User::count();
+        $consultainsCount = Consultain::count();
+
+        $users = User::orderBy('created_at', 'desc')->take(5)->get();
+        $appointments = Appointment::with(['service', 'consultain', 'user'])->orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('admin.dashboard', compact('appointmentsCount', 'servicesCount', 'usersCount', 'consultainsCount', 'users', 'appointments'));
+    }
+
+    public function appointments()
+    {   
+        $appointments = Appointment::with(['service', 'consultain', 'user', 'schedule'])->orderBy('id', 'desc')->paginate(10);
+        return view('admin.appointments.index', compact('appointments'));
+    }
+
+    public function appointmentCancel(Request $request, Appointment $appointment)
     {
-        return view('admin.dashboard');
+        
+        if(Auth::user()->role !== 'admin' && Auth::id() !== $appointment->user_id) {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+        if ($appointment->status === 'cancelled') {
+            return redirect()->back()->with('error', 'Appointment is already cancelled.');
+        }
+
+        $appointment->status = 'cancelled';
+        $appointment->save();
+
+        return redirect()->back()->with('success', 'Appointment has been cancelled successfully.');
     }
 
     public function homePage()
@@ -123,6 +157,7 @@ class AdminPageController extends Controller
             'email' => 'nullable|email',
             'phone' => 'nullable|string',
             'address' => 'nullable|string',
+            'is_appointment' => 'nullable|string',
         ]);
 
         $siteInfo = Info::firstOrNew(['id' => 1]);
@@ -155,6 +190,7 @@ class AdminPageController extends Controller
         $siteInfo->email = $request->email ?? $siteInfo->email;
         $siteInfo->phone = $request->phone ?? $siteInfo->phone;
         $siteInfo->address = $request->address ?? $siteInfo->address;
+        $siteInfo->is_appointment = (bool) $request->input('is_appointment');
 
         $siteInfo->save();
 

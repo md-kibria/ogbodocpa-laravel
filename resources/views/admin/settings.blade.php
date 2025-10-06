@@ -72,6 +72,21 @@
                     </div>
 
                     <div class="py-3"></div>
+                    <div class="flex flex-col my-1">
+                        <label for="is_appointment" class="font-light my-2 text-slate-100">Appointment Visibility</label>
+
+                        <select name="is_appointment" id="is_appointment"
+                            class="p-2 px-3 rounded-md bg-slate-700 ring-1 @error('is_appointment') ring-red-300 @else ring-slate-600 @enderror">
+                            <option value="1" @selected($info->is_appointment == 1)>Show</option>
+                            <option value="0" @selected($info->is_appointment == 0)>Hide</option>
+                        </select>
+
+
+                        @error('is_appointment')
+                            <span class="text-light text-red-300">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="py-3"></div>
 
                     <div class="flex flex-col my-1">
                         <label for="email" class="font-light my-2 text-slate-100">Email</label>
@@ -108,7 +123,7 @@
                     </div>
 
 
-                    
+
 
                 </div>
                 <div class="felx">

@@ -11,6 +11,7 @@ class Navbar extends Component
 {
     public $logo;
     public $title;
+    public $is_appointment;
     /**
      * Create a new component instance.
      */
@@ -18,6 +19,7 @@ class Navbar extends Component
     {
         $this->logo = Info::find(1)->logo ? asset('/storage/' . Info::find(1)->logo) : '';
         $this->title = Info::find(1)->title;
+        $this->is_appointment = Info::find(1)->is_appointment;
     }
 
     /**

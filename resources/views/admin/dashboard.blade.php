@@ -10,14 +10,13 @@
         <div class="bg-purple-200 p-3 rounded-md">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-purple-400">Total News</p>
-                    {{-- <p class="text-4xl text-purple-500 flex">{{ $newsCount > 9 ? $newsCount : '0' . $newsCount }}</p> --}}
-                    <p class="text-4xl text-purple-500 flex">0</p>
+                    <p class="text-purple-400">Total Appointments</p>
+                    <p class="text-4xl text-purple-500 flex">{{ $appointmentsCount > 9 ? $appointmentsCount : '0' . $appointmentsCount }}</p>
                 </div>
                 <div>
                     <div class="bg-purple-500 h-12 w-12 rounded-full flex items-center justify-center">
                         <p class="text-2xl text-center mt-0.5 mr-0.5"><ion-icon class="my-auto block"
-                                name="newspaper-outline"></ion-icon></p>
+                                name="clipboard-outline"></ion-icon></p>
                     </div>
                 </div>
             </div>
@@ -29,14 +28,13 @@
         <div class="bg-blue-200 p-3 rounded-md">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-blue-400">Total Events</p>
-                    {{-- <p class="text-4xl text-blue-500">{{ $eventCount > 9 ? $eventCount : '0' . $eventCount }}</p> --}}
-                    <p class="text-4xl text-blue-500">0</p>
+                    <p class="text-blue-400">Total Services</p>
+                    <p class="text-4xl text-blue-500">{{ $servicesCount > 9 ? $servicesCount : '0' . $servicesCount }}</p>
                 </div>
                 <div>
                     <div class="bg-blue-500 h-12 w-12 rounded-full flex items-center justify-center">
                         <p class="text-2xl text-center mt-0.5 mr-0.5"><ion-icon class="my-auto block"
-                                name="calendar-outline"></ion-icon></p>
+                                name="layers-outline"></ion-icon></p>
                     </div>
                 </div>
             </div>
@@ -48,14 +46,13 @@
         <div class="bg-green-200 p-3 rounded-md">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-green-400">Total Members</p>
-                    {{-- <p class="text-4xl text-green-500">{{ $userCount > 9 ? $userCount : '0' . $userCount }}</p> --}}
-                    <p class="text-4xl text-green-500">0</p>
+                    <p class="text-green-400">Total Consultains</p>
+                    <p class="text-4xl text-green-500">{{ $consultainsCount > 9 ? $consultainsCount : '0' . $consultainsCount }}</p>
                 </div>
                 <div>
                     <div class="bg-green-500 h-12 w-12 rounded-full flex items-center justify-center">
                         <p class="text-2xl text-center mt-0.5 mr-0.5"><ion-icon class="my-auto block"
-                                name="people"></ion-icon></p>
+                                name="people-outline"></ion-icon></p>
                     </div>
                 </div>
             </div>
@@ -80,7 +77,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @if (count($users) == 0)
+                    @if (count($users) == 0)
                         <tr>
                             <td colspan="3" class="border border-slate-700 p-3 text-center">No items found.</td>
                         </tr>
@@ -103,62 +100,52 @@
                                 @endif
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>
 
         {{-- events --}}
         <div class="overflow-x-auto w-full py-2">
-            <p class="text-lg">Latest Services</p>
+            <p class="text-lg">Latest Appointments</p>
             <table class="border-collapse border border-slate-500 my-2 w-full text-slate-300">
                 <thead>
                     <tr>
-                        <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Title</th>
-                        {{-- <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Left</th> --}}
+                        <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Name</th>
+                        <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Email</th>
+                        <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Consultain</th>
                         <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Status</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- @if (count($events) == 0)
+                    @if (count($appointments) == 0)
                         <tr>
                             <td colspan="3" class="border border-slate-700 p-3 text-center">No items found.</td>
                         </tr>
                     @endif
-                    @foreach ($events as $item)
+                    @foreach ($appointments as $item)
                         <tr>
-                        @php
-                            $wait = 0;
-
-                            if ($item->start_time) {
-                                $eventStart = \Carbon\Carbon::parse($item->start_time)->startOfDay();
-                                $today = now()->startOfDay();
-                                $wait = $today->diffInDays($eventStart, false); // will give whole days
-                                $wait = $wait > 0 ? $wait : 0;
-                            }
-                        @endphp
-                            <td class="border border-slate-700 p-3">{{ $item->title }}</td>
-                            <td class="border border-slate-700 p-3 w-22">
-                                {{ str_pad($wait, 2, '0', STR_PAD_LEFT) }} Day{{ $wait > 1 ? 's' : '' }}
-                            </td>
+                            <td class="border border-slate-700 p-3">{{ $item->user->name }}</td>
+                            <td class="border border-slate-700 p-3">{{ $item->user->email }}</td>
+                            <td class="border border-slate-700 p-3">{{ $item->consultain->name }}</td>
                             <td class="border border-slate-700 p-3">
-                                @if ($item?->status == 'upcoming')
+                                @if ($item->status === 'confirmed' || $item->status === 'active')
                                     <p
-                                        class="bg-green-200 text-green-600 text-center rounded-md capitalize w-fit px-2 mx-auto">
+                                        class="text-green-600 text-center rounded-md capitalize w-fit mx-auto">
                                         {{ $item?->status }}
                                     </p>
                                 @elseif ($item?->status == 'ongoing')
                                     <p
-                                        class="bg-blue-200 text-blue-600 text-center rounded-md capitalize w-fit px-2 mx-auto">
+                                        class="text-blue-600 text-center rounded-md capitalize w-fit mx-auto">
                                         {{ $item?->status }}
                                     </p>
                                 @else
-                                    <p class="bg-red-200 text-red-600 text-center rounded-md capitalize w-fit px-2 mx-auto">
+                                    <p class="text-red-600 text-center rounded-md capitalize w-fit mx-auto">
                                         {{ $item?->status }}</p>
                                 @endif
                             </td>
                         </tr>
-                    @endforeach --}}
+                    @endforeach
                 </tbody>
             </table>
         </div>

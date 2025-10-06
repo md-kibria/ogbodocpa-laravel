@@ -17,10 +17,12 @@
                  <ul class="mt-8 flex gap-6">
                      @foreach ($media as $link)
                          @if ($link->url)
-                             <a href="{{ $link->url }}" class="text-3xl transition hover:opacity-60 text-white"
-                                 target="_blank" rel="noopener noreferrer">
-                                 <ion-icon name="logo-{{ $link->name }}"></ion-icon>
-                             </a>
+                             <li>
+                                 <a href="{{ $link->url }}" class="text-3xl transition hover:opacity-60 text-white"
+                                     target="_blank" rel="noopener noreferrer">
+                                     <ion-icon name="logo-{{ $link->name }}"></ion-icon>
+                                 </a>
+                             </li>
                          @endif
                      @endforeach
                  </ul>
@@ -99,29 +101,29 @@
                      </ul>
                  </div>
 
-                 {{-- <div>
+                 <div>
                      <p class="text-xl font-medium text-gray-100">Account</p>
 
                      <ul class="mt-6 space-y-4 text-sm">
                          <li>
-                             <a href="{ route('profile') }}"
+                             <a href="{{ route('profile') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Profile </a>
                          </li>
 
                          <li>
-                             <a href="{ route('login') }}"
+                             <a href="{{ route('profile.appointments') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
-                                     class="text-white text-2xl">»</span> Login </a>
+                                     class="text-white text-2xl">»</span> Appointments </a>
                          </li>
 
                          <li>
-                             <a href="{ route('signup') }}"
+                             <a href="{{ route('signup') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> SignUp </a>
                          </li>
                      </ul>
-                 </div> --}}
+                 </div>
              </div>
          </div>
 

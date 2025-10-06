@@ -11,18 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('infos', function (Blueprint $table) {
+        Schema::create('consultains', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->nullable();
-            $table->string('logo')->nullable();
-            $table->string('footer_logo')->nullable();
-            $table->string('favicon')->nullable();
-            $table->text('description')->nullable();
-            $table->text('site_keywords')->nullable();
+            $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->boolean('is_appointment')->default(true);
+            $table->unsignedBigInteger('service_id'); // foreign key (service)
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('infos');
+        Schema::dropIfExists('consultains');
     }
 };

@@ -69,4 +69,12 @@ class ProfileController extends Controller
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully.');
     }
+
+    public function appointments()
+    {
+        $user = User::findOrFail(Auth::id());
+        $appointments = $user->appointments()->with(['service', 'consultain', 'schedule'])->orderBy('date', 'desc')->get();
+
+        return view('pages.profile-appointments', compact('user', 'appointments'));
+    }
 }

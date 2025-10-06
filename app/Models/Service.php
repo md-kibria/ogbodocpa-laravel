@@ -15,4 +15,10 @@ class Service extends Model
         'seo_description',
         'category',
     ];
+
+    // Relationships
+    public function consultains()
+    {
+        return $this->hasMany(Consultain::class);
+    }
 }

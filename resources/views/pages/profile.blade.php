@@ -45,7 +45,7 @@
                 <h5 class="mb-1 text-xl font-medium text-gray-900">{{ $user?->first_name }} {{ $user?->last_name }}</h5>
                 <span class="text-sm text-gray-500">{{ $user->email }}</span>
                 <div class="flex mt-4 md:mt-6">
-                    <a href="{ route('forum') }}"
+                    <a href="{{ route('profile.appointments') }}"
                         class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white border border-blue-500 bg-blue-500 hover:text-blue-500 hover:bg-transparent rounded-lg focus:ring-4 focus:outline-none focus:ring-blue-300 transition-all"
                         title="Appointments">Appointments</a>
                     <a href="{{ route('profile.edit') }}"

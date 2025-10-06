@@ -67,7 +67,7 @@
                     </div>
                 </div>
 
-                <div class="flex items-center space-x-4">
+                {{-- <div class="flex items-center space-x-4">
                     <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
                         <ion-icon name="mail-outline" class="text-2xl text-gray-500"></ion-icon>
                     </div>
@@ -76,7 +76,7 @@
                         <a href="mailto:{{ $info->email ? $info->email : '' }}"
                             class="block border-b border-gray-300 text-sm pb-0.5 text-gray-600">{{ $info->email ? $info->email : '' }}</a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
