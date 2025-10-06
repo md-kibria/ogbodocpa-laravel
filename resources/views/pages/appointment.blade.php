@@ -376,6 +376,9 @@
         </script>
 
         <script>
+
+            const fetchUrl = `{{ url('/api/appointment') }}`;
+
             document.addEventListener('DOMContentLoaded', function() {
                 const service = document.getElementById('service');
                 const date = document.getElementById('date');
@@ -395,7 +398,7 @@
                         return;
                     }
                     localStorage.setItem('selectedServiceId', serviceId);
-                    fetch(`http://localhost:8000/api/appointment/service/${serviceId}`)
+                    fetch(`${fetchUrl}/service/${serviceId}`)
                         .then(response => response.json())
                         .then(data => {
                             withSelect.innerHTML = '<option value="">Select</option>';
@@ -427,7 +430,7 @@
                     }
 
                     fetch(
-                            `http://localhost:8000/api/appointment/consultain/${consultainId}?date=${localStorage.getItem('selectedDate')}`
+                            `${fetchUrl}/consultain/${consultainId}?date=${localStorage.getItem('selectedDate')}`
                         )
                         .then(response => response.json())
                         .then(data => {
@@ -482,58 +485,6 @@
                         });
 
                 });
-                // withSelect.addEventListener('change', function() {
-                //     const consultainId = withSelect.value;
-                //     if (!consultainId) {
-                //         // Handle no selection
-                //         return;
-                //     }
-                //     // localStorage.setItem('selectedConsultainId', consultainId);
-                //     fetch(
-                //             `http://localhost:8000/api/appointment/consultain/${consultainId}?date=${localStorage.getItem('selectedDate')}`
-                //             )
-                //         .then(response => response.json())
-                //         .then(data => {
-                //             timeSlots.innerHTML = '';
-                //             data.forEach(slot => {
-                //                 const slotDiv = document.createElement('div');
-                //                 slotDiv.className =
-                //                     'flex flex-col border border-slate-600 items-center w-full p-4 rounded-lg';
-
-                //                 const timeH3 = document.createElement('h3');
-                //                 timeH3.className =
-                //                     'text-slate-800 text-center w-full text-2xl font-semibold pt-2';
-                //                 timeH3.textContent = new Date('1970-01-01T' + slot.start_time +
-                //                         'Z')
-                //                     .toLocaleTimeString([], {
-                //                         hour: '2-digit',
-                //                         minute: '2-digit',
-                //                         hour12: true
-                //                     });
-
-                //                 const span = document.createElement('span');
-                //                 span.className = 'text-slate-600';
-                //                 span.textContent = `(to ${new Date('1970-01-01T' + slot.end_time + 'Z')
-        //                     .toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true })})`;
-
-                //                 const button = document.createElement('button');
-                //                 button.className =
-                //                     'bg-blue-500 hover:bg-blue-600 transition-all px-6 py-1 text-lg text-white rounded mt-4 cursor-pointer select-button';
-                //                 button.textContent = 'Select';
-                //                 button.addEventListener('click', selectTimeSlot);
-                //                 button.setAttribute('slot_id', slot.id);
-
-                //                 slotDiv.appendChild(timeH3);
-                //                 slotDiv.appendChild(span);
-                //                 slotDiv.appendChild(button);
-
-                //                 timeSlots.appendChild(slotDiv);
-                //             });
-                //         })
-                //         .catch(() => {
-                //             // Handle error
-                //         });
-                // });
 
                 function selectTimeSlot(event) {
                     const buttons = document.querySelectorAll('.select-button');
@@ -561,7 +512,7 @@
                     }
 
                     fetch(
-                            `http://localhost:8000/api/appointment/preview?service_id=${serviceId}&consultain_id=${consultainId}&date=${selectedDate}&slot_id=${slotId}`
+                            `${fetchUrl}/preview?service_id=${serviceId}&consultain_id=${consultainId}&date=${selectedDate}&slot_id=${slotId}`
                         )
                         .then(response => response.json())
                         .then(data => {
@@ -603,7 +554,7 @@
                     }
 
                     fetch(
-                            `http://localhost:8000/api/appointment/confirm?service_id=${serviceId}&consultain_id=${consultainId}&date=${selectedDate}&slot_id=${slotId}`
+                            `${fetchUrl}/confirm?service_id=${serviceId}&consultain_id=${consultainId}&date=${selectedDate}&slot_id=${slotId}`
                         )
                         .then(response => response.json())
                         .then(data => {
