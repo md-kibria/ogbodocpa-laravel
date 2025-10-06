@@ -17,7 +17,7 @@ class HomepageContentFactory extends Factory
     public function definition(): array
     {
         return [
-            'section' => $this->faker->unique()->word(),
+            'section' => null,
             'title' => null,
             'sub_title' => null,
             'description' => null,
