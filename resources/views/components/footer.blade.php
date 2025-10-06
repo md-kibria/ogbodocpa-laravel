@@ -34,19 +34,19 @@
 
                      <ul class="mt-6 space-y-4 text-sm">
                          <li>
-                             <a href="{ route('services') }}"
+                             <a href="{{ route('services') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Services </a>
                          </li>
 
                          <li>
-                             <a href="{ route('appointment') }}"
+                             <a href="{{ route('appointment') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Appointment </a>
                          </li>
 
                          <li>
-                             <a href="{ route('contact') }}"
+                             <a href="{{ route('contact') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Contact </a>
                          </li>
@@ -58,19 +58,19 @@
 
                      <ul class="mt-6 space-y-4 text-sm">
                          <li>
-                             <a href="{ route('home') }}"
+                             <a href="{{ route('home') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Home </a>
                          </li>
 
                          <li>
-                             <a href="{ route('about') }}"
+                             <a href="{{ route('about') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> About </a>
                          </li>
 
                          <li>
-                             <a href="{ route('contact') }}"
+                             <a href="{{ route('contact') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Contact </a>
                          </li>
@@ -82,19 +82,19 @@
 
                      <ul class="mt-6 space-y-4 text-sm">
                          <li>
-                             <a href="{ route('services') }}"
+                             <a href="{{ route('services') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Services </a>
                          </li>
 
                          <li>
-                             <a href="{ route('resources') }}"
+                             <a href="{{ route('resources') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Resources </a>
                          </li>
 
                          <li>
-                             <a href="{ route('appointment') }}"
+                             <a href="{{ route('appointment') }}"
                                  class="text-gray-400 transition hover:opacity-75 hover:pl-2 duration-200"> <span
                                      class="text-white text-2xl">»</span> Appointment </a>
                          </li>
