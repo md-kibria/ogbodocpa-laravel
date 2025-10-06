@@ -1,11 +1,11 @@
 <nav id="navbar"
-    class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-10 py-7 transition-all duration-300 @if (Route::currentRouteName() == 'home') bg-transparent @else bg-white shadow-md @endif">
+    class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-2 sm:px-5 md:px-10 py-4 transition-all duration-300 @if (Route::currentRouteName() == 'home') bg-transparent @else bg-white shadow-md @endif">
     <h1 class="text-2xl text-white">
         <a href="{{ route('home') }}">
             @if ($logo)
                 <img src="{{ $logo }}" alt="" class="h-[60px] w-auto">
             @else
-                <h1 class="text-2xl font-bold text-slate-600">Logo</h1>
+                <h1 class="text-2xl font-bold text-slate-600 py-3">Logo</h1>
             @endif
         </a>
     </h1>
@@ -35,7 +35,7 @@
         <li>
             @guest
                 <a class="text-white text-lg py-2 px-4 -ml-6 md:ml-0 bg-blue-500 hover:bg-blue-600 rounded-full cursor-pointer transition-all"
-                    href="{{ route('home') }}">Login</a>
+                    href="{{ route('login') }}">Login</a>
             @endguest
             @auth
                 <a class="text-white text-lg py-2 px-4 -ml-6 md:ml-0 bg-blue-500 hover:bg-blue-600 rounded-full cursor-pointer transition-all"
