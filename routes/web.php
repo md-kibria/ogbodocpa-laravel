@@ -43,6 +43,11 @@ Route::middleware('guest')->group(function () {
     Route::post('/auth', [AuthController::class, 'auth'])->name('auth');
     Route::get('/signup', [AuthController::class, 'signup'])->name('signup');
     Route::post('/register', [AuthController::class, 'register'])->name('register');
+
+    Route::get('/forgot-password', [AuthController::class, 'resetReq'])->name('reset-req');
+    Route::post('/reset-request', [AuthController::class, 'resetPost'])->name('reset-post');
+    Route::get('/reset-password', [AuthController::class, 'resetPassword'])->name('reset-password');
+    Route::post('/reset-password', [AuthController::class, 'resetPasswordStore'])->name('reset-store');
 });
 
 Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
