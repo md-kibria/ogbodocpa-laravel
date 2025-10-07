@@ -61,7 +61,7 @@
             justify-content: center;
         }
 
-        .icon svg {
+        .icon svg, .icon img {
             width: 30px;
             height: 30px;
             fill: white;
