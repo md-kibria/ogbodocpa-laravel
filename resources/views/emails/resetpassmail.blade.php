@@ -64,6 +64,7 @@
         .icon svg, .icon img {
             width: 30px;
             height: 30px;
+            margin: 15px;
             fill: white;
         }
 
