@@ -9,7 +9,7 @@
     <div
         class="h-[450px] w-[calc(100%+100px)] bg-slate-100 absolute -top-20 -left-10 -z-10 flex flex-col items-center justify-center rotate-[-5deg]">
     </div>
-    <section class="container mx-auto min-h-screen relative py-15 flex flex-col justify-center items-center">
+    <section class="container mx-auto min-h-screen relative py-15 px-2 flex flex-col justify-center items-center">
 
         <div class="mt-10 w-full max-w-4xl mx-auto bg-white rounded shadow-md overflow-hidden">
             {{-- <div class="w-full h-44 bg-amber-400">asdf --}}
