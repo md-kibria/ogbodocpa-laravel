@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
 @section('content')
-    <section class="min-h-screen bg-slate-900/75 flex flex-col justify-center relative px-2 sm:px-10">
+    <section class="min-h-screen bg-slate-900/70 flex flex-col justify-center relative px-2 sm:px-10">
         @if ($header->imageUrl)
             <img src="{{ $header->imageUrl }}" alt=""
-                class="absolute top-0 left-0 w-full h-full object-cover opacity-30 -z-10">
+                class="absolute top-0 left-0 w-full h-full object-cover opacity-100 -z-10">
         @endif
         <div class="container mx-auto py-20 sm:py-0">
             <span
