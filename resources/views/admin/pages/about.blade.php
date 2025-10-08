@@ -7,9 +7,19 @@
 
     <div class="w-full py-22">
 
-        <form action="{{ route('admin.page.update') }}" class="border border-slate-700 w-full mx-auto p-4 px-6 rounded-lg" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('admin.page.update') }}" class="border border-slate-700 w-full mx-auto p-4 px-6 rounded-lg" method="POST">
             @csrf
             @method('POST')
+            <label for="name" class="block font-light my-2 text-slate-100">
+                <span class="text-sm font-medium text-gray-200"> Name </span>
+
+                <input type="name" id="name"
+                    class="mt-0.5 w-full rounded shadow-sm sm:text-sm border @error('name') border-red-300 @else border-gray-600 @enderror bg-gray-900 text-white py-2 px-3"
+                    placeholder="Enter name" value="{{ old('name') ?? $page->name }}" name="name" />
+                @error('name')
+                    <span class="text-light text-red-300">{{ $message }}</span>
+                @enderror
+            </label>
             <label for="content" class="block font-light my-2 text-slate-100">
                 <span class="text-sm font-medium text-gray-200">Page Content </span>
 
@@ -18,7 +28,6 @@
                     placeholder="Enter content" value="{{ old('content') ?? $page->content }}" name="content" />
                     @error('content') <span class="text-light text-red-300">{{$message}}</span> @enderror
             </label>
-            <input type="hidden" name="name" value="{{ $page->slug }}"/>
             <input type="hidden" name="slug" value="{{ $page->slug }}"/>
 
             <input type="submit" id="submit"

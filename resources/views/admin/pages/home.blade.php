@@ -133,7 +133,7 @@
 
                 </div>
 
-                @if ($item->section !== 'appointment' && $item->section !== 'features_services')
+                @if ($item->section !== 'appointment' && $item->section !== 'features_services' && $item->section !== 'our_philosophy')
                     <div class="felx">
                         <label for="title" class="block font-light my-2 text-slate-100">Preview Image</label>
                         <div class="border border-slate-700 rounded-lg p-2 flex flex-col gap-2">

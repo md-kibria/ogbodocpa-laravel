@@ -34,7 +34,9 @@ class PageController extends Controller
     public function services()
     {
         $services = Service::orderBy('id', 'desc')->paginate(12);
-        return view('pages.services', compact('services'));
+        $page = Page::where('slug', 'services')->first();
+
+        return view('pages.services', compact('services', 'page'));
     }
 
     public function service(Service $service)
@@ -110,7 +112,7 @@ class PageController extends Controller
             'time_slot' => $time_slot,
         ]);
     }
-    
+
     public function appointmentConfirm(Request $request)
     {
         $service_id = $request->query('service_id');
@@ -158,6 +160,8 @@ class PageController extends Controller
     public function resources()
     {
         $resources = Resource::orderBy('id', 'desc')->paginate(12);
-        return view('pages.resources', compact('resources'));
+        $page = Page::where('slug', 'resources')->first();
+
+        return view('pages.resources', compact('resources', 'page'));
     }
 }

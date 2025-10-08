@@ -109,9 +109,10 @@ class AdminPageController extends Controller
         $request->validate([
             'slug' => 'required',
             'content' => 'required',
+            'name' => 'required',
         ]);
         $page = Page::firstOrNew(['slug' => $request->slug]);
-        $page->update(['content' => $request->content]);
+        $page->update(['content' => $request->content, 'name' => $request->name]);
 
         return redirect()->back()->with('success', 'Page updated successfully');
     }
@@ -153,9 +154,12 @@ class AdminPageController extends Controller
             'footer_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,ico|max:2048',
             'description' => 'nullable|string',
+            'footer_description' => 'nullable|string',
             'site_keywords' => 'nullable|string',
             'email' => 'nullable|email',
             'phone' => 'nullable|string',
+            'fax' => 'nullable|string',
+            'business_hours' => 'nullable|string',
             'address' => 'nullable|string',
             'is_appointment' => 'nullable|string',
         ]);
@@ -186,9 +190,12 @@ class AdminPageController extends Controller
 
         $siteInfo->title = $request->title ?? $siteInfo->title;
         $siteInfo->description = $request->description ?? $siteInfo->description;
+        $siteInfo->footer_description = $request->footer_description ?? $siteInfo->footer_description;
         $siteInfo->site_keywords = $request->site_keywords ?? $siteInfo->site_keywords;
         $siteInfo->email = $request->email ?? $siteInfo->email;
         $siteInfo->phone = $request->phone ?? $siteInfo->phone;
+        $siteInfo->fax = $request->fax ?? $siteInfo->fax;
+        $siteInfo->business_hours = $request->business_hours ?? $siteInfo->fax;
         $siteInfo->address = $request->address ?? $siteInfo->address;
         $siteInfo->is_appointment = (bool) $request->input('is_appointment');
 

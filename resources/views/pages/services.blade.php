@@ -1,6 +1,4 @@
-<x-page title="Our Services"
-    description="Our Services include Tax Preparation, Bookkeeping, Payroll, Business Consulting, and more. We
-    provide expert financial solutions tailored to your needs." :count="count($services)">
+<x-page :title="$page->name" :description="$page->description" :count="count($services)">
 
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">

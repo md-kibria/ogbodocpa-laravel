@@ -67,6 +67,26 @@
                     </div>
                 </div>
 
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
+                        <ion-icon name="print-outline" class="text-2xl text-gray-500"></ion-icon>
+                    </div>
+                    <div class="flex-grow text-gray-600">
+                        <h3 class="text-xl font-semibold mb-0.5">Fax Number</h3>
+                        <span
+                            class="block border-b border-gray-300 text-sm pb-0.5 text-gray-600">{{ $info->fax }}</span>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
+                        <ion-icon name="time-outline" class="text-2xl text-gray-500"></ion-icon>
+                    </div>
+                    <div class="flex-grow text-gray-600">
+                        <h3 class="text-xl font-semibold mb-0.5">Business Hours</h3>
+                        <span
+                            class="block border-b border-gray-300 text-sm pb-0.5 text-gray-600">{{ $info->business_hours }}</span>
+                    </div>
+                </div>
                 {{-- <div class="flex items-center space-x-4">
                     <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
                         <ion-icon name="mail-outline" class="text-2xl text-gray-500"></ion-icon>

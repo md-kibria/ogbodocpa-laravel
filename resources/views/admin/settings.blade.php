@@ -70,6 +70,16 @@
                             <span class="text-light text-red-300">{{ $message }}</span>
                         @enderror
                     </div>
+                    <div class="flex flex-col my-1">
+                        <label for="footer_description" class="font-light my-2 text-slate-100">Footer Description</label>
+                        <textarea
+                            class="p-2 px-3 rounded-md bg-transparent ring-1 @error('footer_description') ring-red-300 @else ring-slate-600 @enderror"
+                            type="text" id="footer_description" rows="3" name="footer_description" placeholder="Your footer_description here">{{ old('footer_description') ?? $info->footer_description }}</textarea>
+
+                        @error('footer_description')
+                            <span class="text-light text-red-300">{{ $message }}</span>
+                        @enderror
+                    </div>
 
                     <div class="py-3"></div>
                     <div class="flex flex-col my-1">
@@ -107,6 +117,28 @@
                             value="{{ old('phone') ?? $info->phone }}">
 
                         @error('phone')
+                            <span class="text-light text-red-300">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="flex flex-col my-1">
+                        <label for="fax" class="font-light my-2 text-slate-100">Fax Numbers</label>
+                        <input
+                            class="p-2 px-3 rounded-md bg-transparent ring-1 @error('fax') ring-red-300 @else ring-slate-600 @enderror"
+                            type="text" id="fax" name="fax" placeholder="Your fax here"
+                            value="{{ old('fax') ?? $info->fax }}">
+
+                        @error('fax')
+                            <span class="text-light text-red-300">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    <div class="flex flex-col my-1">
+                        <label for="business_hours" class="font-light my-2 text-slate-100">Business Hours</label>
+                        <input
+                            class="p-2 px-3 rounded-md bg-transparent ring-1 @error('business_hours') ring-red-300 @else ring-slate-600 @enderror"
+                            type="text" id="business_hours" name="business_hours" placeholder="Business hours here"
+                            value="{{ old('business_hours') ?? $info->business_hours }}">
+
+                        @error('business_hours')
                             <span class="text-light text-red-300">{{ $message }}</span>
                         @enderror
                     </div>

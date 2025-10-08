@@ -2,16 +2,16 @@
      <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
          <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
              <div>
-                 <a href="{ route('home') }}">
+                 <a href="{{ route('home') }}">
                      @if ($info->footer_logo)
-                         <img src="{{ asset('/storage/' . $info->footer_logo) }}" alt="" class="h-[50px] w-auto">
+                         <img src="{{ asset('/storage/' . $info->footer_logo) }}" alt="" class="h-[70px] w-auto">
                      @else
                          <h1 class="text-2xl font-bold text-slate-100">Logo</h1>
                      @endif
                  </a>
 
                  <p class="mt-4 max-w-xs text-gray-300">
-                     {{ $info->description }}
+                     {{ $info->footer_description }}
                  </p>
 
                  <ul class="mt-8 flex gap-6">

@@ -18,9 +18,12 @@ return new class extends Migration
             $table->string('footer_logo')->nullable();
             $table->string('favicon')->nullable();
             $table->text('description')->nullable();
+            $table->text('footer_description')->nullable();
             $table->text('site_keywords')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+            $table->string('fax')->nullable();
+            $table->string('business_hours')->nullable();
             $table->string('address')->nullable();
             $table->boolean('is_appointment')->default(true);
             $table->timestamps();

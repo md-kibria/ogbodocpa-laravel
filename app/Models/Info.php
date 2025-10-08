@@ -15,9 +15,12 @@ class Info extends Model
         'footer_logo',
         'favicon',
         'description',
+        'footer_description',
         'site_keywords',
         'email',
         'phone',
+        'fax',
+        'business_hours',
         'address',
         'is_appointment'
     ];
