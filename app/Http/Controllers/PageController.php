@@ -20,14 +20,15 @@ class PageController extends Controller
         $info = Info::find(1);
 
         $header = HomepageContent::where('section', 'header')->first();
-        $philosophy = HomepageContent::where('section', 'our_philosophy')->first();
+        $about = HomepageContent::where('section', 'about')->first();
         $appointment = HomepageContent::where('section', 'appointment')->first();
-        $features_services = HomepageContent::where('section', 'features_services')->first();
+        $features_1 = HomepageContent::where('section', 'features_1')->first();
+        $features_2 = HomepageContent::where('section', 'features_2')->first();
+        $features_3 = HomepageContent::where('section', 'features_3')->first();
+        $philosophy = HomepageContent::where('section', 'our_philosophy')->first();
+        $services = Service::orderBy('id', 'desc')->take(3)->get();
 
-        $serviceIds = array_values(json_decode($features_services->title, true));
-        $services_list = Service::whereIn('id', $serviceIds)->get();
-
-        return view('pages.home', compact('info', 'header', 'philosophy', 'appointment', 'services_list'));
+        return view('pages.home', compact('info', 'header', 'about', 'appointment', 'features_1', 'features_2', 'features_3', 'philosophy', 'services'));
     }
 
     public function services()

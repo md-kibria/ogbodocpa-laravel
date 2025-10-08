@@ -26,48 +26,37 @@
 
 
 
-
-    @if(count($services_list) !== 0)
-    <section class="container mx-auto py-20 px-5 md:px-10 lg:px-22">
-        <h2 class="text-3xl font-semibold text-center mb-16 text-slate-600">Our Services</h2>
+    <section class="container mx-auto -mt-40 py-20 px-5 md:px-10 lg:px-22 relative">
         <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-10">
-            @foreach ($services_list as $item)
+            @foreach ([$features_1, $features_2, $features_3] as $item)
                 <div class="bg-transparent ">
-                    <div class="h-40 w-full overflow-hidden mb-4 rounded-sm">
+                    <div class="h-56 w-full overflow-hidden mb-4 rounded-sm">
                         <img src="{{ asset('/storage/' . $item->image) }}" alt=""
-                            class="w-full h-40 mx-auto object-cover transform transition-transform duration-500 hover:scale-110">
+                            class="w-full h-56 mx-auto object-cover transform transition-transform duration-500 hover:scale-110">
                     </div>
-                    <a href="{{ route('service', $item->slug) }}">
-                        <h3 class="text-2xl font-semibold mb-2 text-slate-700 text-left">{{ $item->title }}</h3>
-                    </a>
+                    <h3 class="text-2xl font-semibold mb-2 text-slate-700 text-left">{{ $item->title }}</h3>
                     <p class="text-gray-600 text-left text-sm">
                         {{ \Illuminate\Support\Str::words(html_entity_decode(strip_tags($item->description)), 20) }}</p>
-                    <a href="{{ route('service', $item->slug) }}" aria-label="Learn more about {{ $item->name }}"
-                        class="text-blue-500 mt-2 flex items-center gap-1 hover:gap-3 transition-all">
-                        Learn more
-                        <ion-icon name="arrow-forward-outline" class="mt-1 text-md"></ion-icon>
-                    </a>
 
                 </div>
             @endforeach
         </div>
     </section>
-    @endif
 
     <section class="">
         <div class="flex flex-col md:flex-row items-center justify-center gap-10 px-10 py-20 bg-gray-100">
             <div class="relative z-20">
                 <img class="w-full h-[400px] md:w-[400px] md:h-[500px] object-cover rounded-4xl z-20"
-                    src="{{ $philosophy->imageUrl }}" alt="">
+                    src="{{ $about->imageUrl }}" alt="">
                 <div
                     class="border-2 border-dashed border-slate-500 pr-5 pb-5 -pl-5 rounded-[45px] absolute top-5 left-5 -right-5 -bottom-5 -z-10">
                 </div>
             </div>
             <div class="text-center sm:text-left">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-600 text-center sm:text-left">
-                    {{ $philosophy->title }}</h2>
+                <h2 class="text-4xl md:text-5xl font-bold max-w-2xl mb-4 text-slate-600 text-center sm:text-left">
+                    {{ $about->title }}</h2>
                 <p class="text-lg text-gray-500 mb-8 max-w-2xl text-center sm:text-left">
-                    {{ $philosophy->description }}
+                    {{ $about->description }}
                 </p>
 
                 <a class="inline-flex items-center gap-2 rounded-sm border border-blue-400 bg-blue-400 px-8 py-3 text-white hover:bg-transparent hover:text-blue-400 focus:ring-3 focus:outline-hidden transition duration-300"
@@ -83,6 +72,51 @@
             </div>
         </div>
     </section>
+
+    @if (count($services) !== 0)
+        <section class="container mx-auto py-20 px-5 md:px-10 lg:px-22">
+            <h2 class="text-3xl md:text-4xl font-semibold text-center md:mb-10 text-slate-600">What We Do</h2>
+            {{-- mb-16 --}}
+            <div class="flex justify-center md:justify-end pb-10 md:pb-3">
+                <a href="{{ route('services') }}" aria-label="Learn more about {{ $item->name }}"
+                    class="text-indigo-500 mt-2 flex items-center gap-1 hover:gap-3 transition-all">
+                    View All Services
+                    <ion-icon name="arrow-forward-outline" class="mt-1 text-md"></ion-icon>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-10">
+                @foreach ($services as $item)
+                    <div class="bg-transparent ">
+                        <div class="h-40 w-full overflow-hidden mb-4 rounded-sm">
+                            <img src="{{ asset('/storage/' . $item->image) }}" alt=""
+                                class="w-full h-40 mx-auto object-cover transform transition-transform duration-500 hover:scale-110">
+                        </div>
+                        <a href="{{ route('service', $item->slug) }}">
+                            <h3 class="text-2xl font-semibold mb-2 text-slate-700 text-left">{{ $item->title }}</h3>
+                        </a>
+                        <p class="text-gray-600 text-left text-sm">
+                            {{ \Illuminate\Support\Str::words(html_entity_decode(strip_tags($item->description)), 20) }}
+                        </p>
+                        <a href="{{ route('service', $item->slug) }}" aria-label="Learn more about {{ $item->name }}"
+                            class="text-blue-500 mt-2 flex items-center gap-1 hover:gap-3 transition-all">
+                            Learn more
+                            <ion-icon name="arrow-forward-outline" class="mt-1 text-md"></ion-icon>
+                        </a>
+
+                    </div>
+                @endforeach
+            </div>
+        </section>
+    @endif
+
+    <div class="bg-blue-400">
+        <div class="container mx-auto text-white py-22 flex flex-col md:flex-row items-center justify-center">
+            <div class="text-center">
+                <h2 class="text-5xl font-bold mb-4">{{ $philosophy->title }}</h2>
+                <p class="mb-4 text-xl">{{ $philosophy->description }}</p>
+            </div>
+        </div>
+    </div>
 
     <section class="">
         <div class="flex flex-col md:flex-row items-center justify-center gap-10 px-10 py-20">
@@ -137,7 +171,8 @@
                                 <b class="text-gray-400 text-sm font-semibold">Available 24/7</b>
                                 <h2 class="text-2xl text-gray-600 font-semibold">Get In Touch</h2>
                                 <div>
-                                    <input type="text" name="name" id="firstNameinput" placeholder="Enter your name"
+                                    <input type="text" name="name" id="firstNameinput"
+                                        placeholder="Enter your name"
                                         class="w-full border @error('name') border-red-300 @else border-gray-300 @enderror rounded px-2 py-1.5">
                                     @error('name')
                                         <span class="text-red-500">{{ $message }}</span>

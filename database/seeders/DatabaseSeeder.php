@@ -39,21 +39,37 @@ class DatabaseSeeder extends Seeder
         ]);
         
         HomepageContent::factory()->create([
-            'section' => 'features_services',
-            'title' => '[1, 2, 3]',
+            'section' => 'features_1',
+            'title' => 'Quality',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+        ]);
+        HomepageContent::factory()->create([
+            'section' => 'features_2',
+            'title' => 'Experience',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+        ]);
+        HomepageContent::factory()->create([
+            'section' => 'features_3',
+            'title' => 'Commitment',
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.'
+        ]);
+
+        HomepageContent::factory()->create([
+            'section' => 'about',
+            'title' => 'Individuals and Business Tax & Accounting Solutions',
             'sub_title' => null,
-            'description' => null,
+            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus repudiandae inventore tenetur quis in, autem quod harum, debitis qui cum voluptas praesentium commodi quas quaerat suscipit dignissimos iusto, pariatur delectus. Vel beatae recusandae praesentium accusamus odio ipsam! Nobis, reiciendis eveniet expedita quia cumque, doloremque natus, accusamus corporis odit aut a. ',
             'image' => null,
             'schedule' => null,
             'address' => null,
             'url' => null
         ]);
-
+        
         HomepageContent::factory()->create([
             'section' => 'our_philosophy',
-            'title' => 'Our Philosophy',
+            'title' => 'Our Guiding Philosophy',
             'sub_title' => null,
-            'description' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus repudiandae inventore tenetur quis in, autem quod harum, debitis qui cum voluptas praesentium commodi quas quaerat suscipit dignissimos iusto, pariatur delectus. Vel beatae recusandae praesentium accusamus odio ipsam! Nobis, reiciendis eveniet expedita quia cumque, doloremque natus, accusamus corporis odit aut a. ',
+            'description' => 'Quality, experience, commitment and trust from the foundation of our success',
             'image' => null,
             'schedule' => null,
             'address' => null,

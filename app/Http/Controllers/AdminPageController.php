@@ -74,14 +74,14 @@ class AdminPageController extends Controller
 
         $data = $request->all();
 
-        if($request->section === 'features_services') {
-            $data['title'] = json_encode([
-                'service_1' => $request->service_1,
-                'service_2' => $request->service_2,
-                'service_3' => $request->service_3,
-                // 'service_4' => $request->service_4,
-            ]);
-        }
+        // if($request->section === 'features_services') {
+        //     $data['title'] = json_encode([
+        //         'service_1' => $request->service_1,
+        //         'service_2' => $request->service_2,
+        //         'service_3' => $request->service_3,
+        //         // 'service_4' => $request->service_4,
+        //     ]);
+        // }
 
         // Handle file uploads
         if ($request->hasFile('image')) {

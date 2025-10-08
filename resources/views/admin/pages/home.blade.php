@@ -69,7 +69,7 @@
                     @endif
 
 
-                    @if ($item->section !== 'appointment' && $item->section !== 'features_services')
+                    @if ($item->section !== 'appointment' && $item->section !== 'features_services' && $item->section !== 'our_philosophy')
                         <div class="flex flex-col my-1">
                             <label for="image" class="font-light my-2 text-slate-100">Image</label>
                             <input
