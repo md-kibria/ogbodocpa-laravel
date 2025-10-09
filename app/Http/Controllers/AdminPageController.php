@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ConfirmAppointmentMail;
+use App\Mail\RejectAppointmentMail;
 use App\Models\Appointment;
 use App\Models\Consultain;
+use App\Models\Schedule;
 use App\Models\HomepageContent;
 use App\Models\Info;
 use App\Models\Media;
@@ -12,6 +15,7 @@ use App\Models\Service;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class AdminPageController extends Controller
@@ -38,6 +42,77 @@ class AdminPageController extends Controller
     {   
         $appointments = Appointment::with(['service', 'consultain', 'user', 'schedule'])->orderBy('id', 'desc')->paginate(10);
         return view('admin.appointments.index', compact('appointments'));
+    }
+
+    public function appointmentShow(Appointment $appointment)
+    {
+        $appointment->load(['service', 'consultain', 'user', 'schedule']);
+        $schedules = Schedule::where('consultain_id', $appointment->consultain_id)->orderBy('start_time')->get();
+        return view('admin.appointments.show', compact('appointment', 'schedules'));
+    }
+
+    public function appointmentUpdate(Request $request, Appointment $appointment)
+    {
+        if(Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+
+        $validated = $request->validate([
+            'date' => 'required|date',
+            'schedule_id' => 'required|exists:schedules,id',
+        ]);
+
+        // Ensure the schedule belongs to the same consultain
+        $schedule = Schedule::where('id', $validated['schedule_id'])
+            ->where('consultain_id', $appointment->consultain_id)
+            ->first();
+
+        if (!$schedule) {
+            return redirect()->back()->with('error', 'Selected schedule is invalid for this consultant.');
+        }
+
+        $appointment->date = $validated['date'];
+        $appointment->schedule_id = $validated['schedule_id'];
+        // Keep status as is; admin can approve/reject with separate actions
+        $appointment->save();
+
+        return redirect()->back()->with('success', 'Appointment updated successfully.');
+    }
+
+    public function appointmentApprove(Request $request, Appointment $appointment)
+    {
+        if(Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+
+        if (in_array($appointment->status, ['cancelled', 'rejected', 'completed'])) {
+            return redirect()->back()->with('error', 'Cannot approve a '.$appointment->status.' appointment.');
+        }
+
+        $appointment->status = 'confirmed';
+        $appointment->save();
+
+        Mail::to($appointment->user->email)->send(new ConfirmAppointmentMail($appointment));
+
+        return redirect()->back()->with('success', 'Appointment approved.');
+    }
+
+    public function appointmentReject(Request $request, Appointment $appointment)
+    {
+        if(Auth::user()->role !== 'admin') {
+            return redirect()->back()->with('error', 'Unauthorized action.');
+        }
+
+        if ($appointment->status === 'rejected') {
+            return redirect()->back()->with('error', 'Appointment is already rejected.');
+        }
+
+        $appointment->status = 'rejected';
+        $appointment->save();
+
+        Mail::to($appointment->user->email)->send(new RejectAppointmentMail($appointment));
+
+        return redirect()->back()->with('success', 'Appointment rejected.');
     }
 
     public function appointmentCancel(Request $request, Appointment $appointment)

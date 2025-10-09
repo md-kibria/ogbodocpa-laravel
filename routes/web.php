@@ -10,6 +10,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
+use App\Mail\ConfirmAppointmentMail;
+use App\Mail\RejectAppointmentMail;
+use App\Mail\SubmitAppointmentMail;
+use App\Models\Appointment;
+use App\Models\Info;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -67,7 +73,11 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
     Route::delete('/consultains/schedules/{schedule}', [ConsultainController::class, 'schedulesDelete'])->name('consultains.schedules.destroy');
 
     Route::get('/appointments', [AdminPageController::class, 'appointments'])->name('appointments.index');
+    Route::get('/appointments/{appointment}', [AdminPageController::class, 'appointmentShow'])->name('appointments.show');
+    Route::put('/appointments/{appointment}', [AdminPageController::class, 'appointmentUpdate'])->name('appointments.update');
     Route::put('/appointments/cancel/{appointment}', [AdminPageController::class, 'appointmentCancel'])->name('appointments.cancel');
+    Route::put('/appointments/approve/{appointment}', [AdminPageController::class, 'appointmentApprove'])->name('appointments.approve');
+    Route::put('/appointments/reject/{appointment}', [AdminPageController::class, 'appointmentReject'])->name('appointments.reject');
 
     Route::get('/home-page', [AdminPageController::class, 'homePage'])->name('home');
     Route::post('/home-page', [AdminPageController::class, 'homePageUpdate'])->name('home.update');
@@ -103,4 +113,14 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
     Route::get('/settings', [AdminPageController::class, 'settings'])->name('settings');
     Route::post('/settings-update', [AdminPageController::class, 'settingUpdate'])->name('settings.update');
     Route::post('/settings-media-update', [AdminPageController::class, 'settingMediaUpdate'])->name('settings.media.update');
+});
+
+
+Route::get('/test', function() {
+    $appointment = Appointment::first();
+    $info = Info::first();
+    // return view('emails.appointment-reject', compact('appointment', 'info'));
+    Mail::to('mrdev774@gmail.com')->send(new RejectAppointmentMail($appointment));
+
+    return "Email Sent";
 });

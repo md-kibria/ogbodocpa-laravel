@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Consultain Profile')
-@section('header', 'Consultain Profile')
+@section('title', 'Consultant Profile')
+@section('header', 'Consultant Profile')
 
 @section('content')
 

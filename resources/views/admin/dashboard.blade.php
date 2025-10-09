@@ -46,7 +46,7 @@
         <div class="bg-green-200 p-3 rounded-md">
             <div class="flex items-center justify-between">
                 <div>
-                    <p class="text-green-400">Total Consultains</p>
+                    <p class="text-green-400">Total Consultants</p>
                     <p class="text-4xl text-green-500">{{ $consultainsCount > 9 ? $consultainsCount : '0' . $consultainsCount }}</p>
                 </div>
                 <div>
@@ -113,7 +113,7 @@
                     <tr>
                         <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Name</th>
                         <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Email</th>
-                        <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Consultain</th>
+                        <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Consultant</th>
                         <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Status</th>
                     </tr>
                 </thead>

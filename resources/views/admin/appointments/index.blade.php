@@ -38,7 +38,7 @@
                             {{ \Carbon\Carbon::createFromFormat('H:i:s', $item->schedule->end_time)->format('h:i A') }}
                         </td>
                         <td class="border border-slate-700 p-3">
-                            @if ($item->status === 'confirmed' || $item->status === 'active')
+                            @if ($item->status === 'confirmed' || $item->status === 'active' || $item->status === 'completed')
                                 <p class="bg-green-200 text-green-600 text-center rounded-md capitalize w-fit px-2 mx-auto">
                                     {{ $item->status }}
                                 </p>
@@ -54,13 +54,13 @@
                         <td class="border border-slate-700 p-3">
                             <span
                                 class="inline-flex divide-x divide-gray-300 overflow-hidden rounded border border-gray-300 bg-white shadow-sm">
-                                {{-- <a href="{{ route('admin.users.show', $item->id) }}"
+                                <a href="{{ route('admin.appointments.show', $item->id) }}"
                                     class="bg-blue-500 hover:bg-blue-400 cursor-pointer px-3 py-1.5 text-sm font-medium text-gray-100 transition-colors hover:text-gray-900 focus:relative">
-                                    Profile
-                                </a> --}}
+                                    View
+                                </a>
 
 
-                                <form action="{{ route('admin.appointments.cancel', $item->id) }}"
+                                {{-- <form action="{{ route('admin.appointments.cancel', $item->id) }}"
                                     onsubmit="return confirm('Are you sure you want to cancel?')" method="POST">
                                     @csrf
                                     @method('PUT')
@@ -69,7 +69,7 @@
                                         class="bg-red-400 hover:bg-red-300 cursor-pointer px-3 py-1.5 text-sm font-medium text-gray-100 transition-colors hover:text-gray-900 focus:relative">
                                         Cancel
                                     </button>
-                                </form>
+                                </form> --}}
                             </span>
                         </td>
                         

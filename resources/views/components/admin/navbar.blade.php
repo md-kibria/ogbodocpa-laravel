@@ -33,7 +33,7 @@
             <li>
                 <a class="font-light hover:text-slate-300 text-xl" href="{{ route('admin.consultains.index') }}">
                     <ion-icon name="people-outline"></ion-icon>
-                    <p class="inline md:hidden">Consultains</p>
+                    <p class="inline md:hidden">Consultants</p>
                 </a>
             </li>
             <li class="relative group">

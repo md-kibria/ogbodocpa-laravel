@@ -26,10 +26,11 @@
                 <table class="min-w-full mt-8 border border-gray-200 rounded-lg">
                     <thead class="bg-gray-100">
                         <tr>
+                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Id</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Date</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Time</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Service</th>
-                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Consultain</th>
+                            <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Consultant</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Email</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Phone</th>
                             <th class="px-4 py-2 text-left text-sm font-semibold text-gray-700">Status</th>
@@ -39,6 +40,7 @@
                     <tbody>
                         @foreach ($appointments as $appointment)
                             <tr class="border-t border-slate-400">
+                                <td class="px-4 py-2 text-sm text-gray-600">{{ $appointment->id }}</td>
                                 <td class="px-4 py-2 text-sm text-gray-600">
                                     {{ \Carbon\Carbon::parse($appointment->date)->toFormattedDateString() }}</td>
                                 <td class="px-4 py-2 text-sm text-gray-600">{{ $appointment->schedule->start_time }}</td>

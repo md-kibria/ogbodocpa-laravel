@@ -93,7 +93,7 @@
         <div class="w-full max-w-sm bg-gray-800 border border-gray-700 rounded-lg shadow-sm">
             
             <div class="px-6 py-4">
-                <h5 class="mb-4 text-xl font-medium text-white text-center">Member Details</h5>
+                <h5 class="mb-4 text-xl font-medium text-white text-center">User's Details</h5>
                 <ul class="space-y-3">
                     <li class="flex items-center">
                         <span class="font-semibold text-gray-400 w-[90px]">Email: </span>

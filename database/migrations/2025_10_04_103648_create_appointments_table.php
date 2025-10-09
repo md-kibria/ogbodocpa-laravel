@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('client_email')->nullable();
             $table->string('client_phone')->nullable();
             $table->text('notes')->nullable();
-            $table->enum('status', ['pending', 'active', 'confirmed', 'cancelled'])->default('confirmed');
+            $table->enum('status', ['pending', 'active', 'confirmed', 'cancelled', 'rejected', 'completed'])->default('pending');
             $table->timestamps();
         });
     }

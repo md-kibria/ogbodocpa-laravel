@@ -73,7 +73,7 @@ class ProfileController extends Controller
     public function appointments()
     {
         $user = User::findOrFail(Auth::id());
-        $appointments = $user->appointments()->with(['service', 'consultain', 'schedule'])->orderBy('date', 'desc')->get();
+        $appointments = $user->appointments()->with(['service', 'consultain', 'schedule'])->orderBy('date', 'asc')->get();
 
         return view('pages.profile-appointments', compact('user', 'appointments'));
     }

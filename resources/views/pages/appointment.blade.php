@@ -161,6 +161,13 @@
                             <span class="text-gray-100" id="preview_name">Dr. Sarah Johnson</span>
                         </div>
                     </div>
+
+                    <div class="mt-5 flex flex-col gap-2">
+                        <span class="font-medium text-gray-200">Notes(optional):</span>
+                        <textarea name="notes" id="notes" cols="30" rows="5"
+                            class="w-full border border-gray-200 rounded-md p-2 text-slate-100 focus:outline-0"
+                            placeholder="Add any special requests, comments, or notes for your appointment"></textarea>
+                    </div>
                 </div>
 
                 <div class="flex justify-between pt-4 border-t border-slate-300">
@@ -191,9 +198,9 @@
                     </p>
                 </div>
 
-                <a href="{{ route('profile') }}"
+                <a href="{{ route('profile.appointments') }}"
                     class="inline-block mt-8 bg-sky-500 hover:bg-sky-600 text-white font-medium px-8 py-3 rounded-md transition-colors">
-                    Go To Profile
+                    Your Appointments
                 </a>
             </div>
 
@@ -376,7 +383,6 @@
         </script>
 
         <script>
-
             const fetchUrl = `{{ url('/api/appointment') }}`;
 
             document.addEventListener('DOMContentLoaded', function() {
@@ -384,9 +390,14 @@
                 const date = document.getElementById('date');
                 const withSelect = document.getElementById('with');
                 const timeSlots = document.getElementById('timeSlots');
+                const notes = document.getElementById('notes');
 
                 date.addEventListener('change', function() {
-                    localStorage.setItem('selectedDate', date.value);
+                    sessionStorage.setItem('selectedDate', date.value);
+                });
+
+                notes.addEventListener('input', function() {
+                    sessionStorage.setItem('notes', notes.value);
                 });
 
                 service.addEventListener('change', function() {
@@ -397,7 +408,7 @@
                         withSelect.innerHTML = '<option value="">Select</option>';
                         return;
                     }
-                    localStorage.setItem('selectedServiceId', serviceId);
+                    sessionStorage.setItem('selectedServiceId', serviceId);
                     fetch(`${fetchUrl}/service/${serviceId}`)
                         .then(response => response.json())
                         .then(data => {
@@ -416,13 +427,13 @@
 
                 withSelect.addEventListener('change', function() {
                     const consultainId = withSelect.value;
-                    localStorage.setItem('selectedConsultainId', consultainId);
+                    sessionStorage.setItem('selectedConsultainId', consultainId);
                 });
 
                 document.getElementById('check').addEventListener('click', function() {
-                    const serviceId = localStorage.getItem('selectedServiceId');
-                    const consultainId = localStorage.getItem('selectedConsultainId');
-                    const selectedDate = localStorage.getItem('selectedDate');
+                    const serviceId = sessionStorage.getItem('selectedServiceId');
+                    const consultainId = sessionStorage.getItem('selectedConsultainId');
+                    const selectedDate = sessionStorage.getItem('selectedDate');
 
                     if (!serviceId || !consultainId || !selectedDate) {
                         alert('Please select service, date, and provider.');
@@ -430,7 +441,7 @@
                     }
 
                     fetch(
-                            `${fetchUrl}/consultain/${consultainId}?date=${localStorage.getItem('selectedDate')}`
+                            `${fetchUrl}/consultain/${consultainId}?date=${sessionStorage.getItem('selectedDate')}`
                         )
                         .then(response => response.json())
                         .then(data => {
@@ -443,7 +454,9 @@
                                 const timeH3 = document.createElement('h3');
                                 timeH3.className =
                                     'text-slate-200 text-center w-full text-2xl font-semibold pt-2';
-                                timeH3.innerHTML = '<h1 class="flex gap-1"><ion-icon class="text-2xl font-bold mt-1" name="time-outline"></ion-icon>' + new Date('1970-01-01T' + slot.start_time)
+                                timeH3.innerHTML =
+                                    '<h1 class="flex gap-1"><ion-icon class="text-2xl font-bold mt-1" name="time-outline"></ion-icon>' +
+                                    new Date('1970-01-01T' + slot.start_time)
                                     .toLocaleTimeString('en-US', {
                                         hour: '2-digit',
                                         minute: '2-digit',
@@ -497,14 +510,14 @@
                     // button.classList.remove('bg-green-700');
                     // button.classList.add('bg-green-600');
 
-                    localStorage.setItem('selectedSlotId', button.getAttribute('slot_id'));
+                    sessionStorage.setItem('selectedSlotId', button.getAttribute('slot_id'));
                 }
 
                 document.getElementById('continue').addEventListener('click', function() {
-                    const serviceId = localStorage.getItem('selectedServiceId');
-                    const consultainId = localStorage.getItem('selectedConsultainId');
-                    const selectedDate = localStorage.getItem('selectedDate');
-                    const slotId = localStorage.getItem('selectedSlotId');
+                    const serviceId = sessionStorage.getItem('selectedServiceId');
+                    const consultainId = sessionStorage.getItem('selectedConsultainId');
+                    const selectedDate = sessionStorage.getItem('selectedDate');
+                    const slotId = sessionStorage.getItem('selectedSlotId');
 
                     if (!serviceId || !consultainId || !selectedDate || !slotId) {
                         alert('Please select a time slot.');
@@ -516,6 +529,10 @@
                         )
                         .then(response => response.json())
                         .then(data => {
+                            sessionStorage.setItem('message',
+                                `${new Date(data.date).toLocaleDateString('en-US', {year: 'numeric',month: 'long',day: 'numeric'})} at ${new Date('1970-01-01T' + data.time_slot.start_time).toLocaleTimeString([], {hour: '2-digit',minute: '2-digit',hour12: true})} <br/> with ${data.consultain.name}`
+                                );
+
                             // Update confirmation step with fetched data
                             document.querySelector('#preview_title').textContent = data
                                 .service.title;
@@ -543,25 +560,33 @@
                 });
 
                 document.getElementById('confirm').addEventListener('click', function() {
-                    const serviceId = localStorage.getItem('selectedServiceId');
-                    const consultainId = localStorage.getItem('selectedConsultainId');
-                    const selectedDate = localStorage.getItem('selectedDate');
-                    const slotId = localStorage.getItem('selectedSlotId');
+                    const serviceId = sessionStorage.getItem('selectedServiceId');
+                    const consultainId = sessionStorage.getItem('selectedConsultainId');
+                    const selectedDate = sessionStorage.getItem('selectedDate');
+                    const slotId = sessionStorage.getItem('selectedSlotId');
+                    const notes = sessionStorage.getItem('notes');
 
                     if (!serviceId || !consultainId || !selectedDate || !slotId) {
                         alert('Please complete all selections before confirming.');
                         return;
                     }
 
+                    document.querySelector('#confirm_msg').innerHTML = sessionStorage.getItem('message');
+
                     fetch(
-                            `${fetchUrl}/confirm?service_id=${serviceId}&consultain_id=${consultainId}&date=${selectedDate}&slot_id=${slotId}`
+                            `${fetchUrl}/confirm?service_id=${serviceId}&consultain_id=${consultainId}&date=${selectedDate}&slot_id=${slotId}&notes=${notes}`
                         )
                         .then(response => response.json())
                         .then(data => {
-                            console.log(data);
 
                             if (data.status === 200) {
                                 document.querySelector('#confirm_msg').innerHTML = data.message;
+
+                                sessionStorage.setItem('selectedServiceId', null);
+                                sessionStorage.setItem('selectedConsultainId', null);
+                                sessionStorage.setItem('selectedDate', null);
+                                sessionStorage.setItem('selectedSlotId', null);
+                                sessionStorage.setItem('notes', null);
                             } else {
                                 alert('Error confirming appointment. Please try again.');
                             }

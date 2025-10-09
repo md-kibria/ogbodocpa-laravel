@@ -42,7 +42,7 @@
             <a class="my-1 py-2 hover:bg-slate-500 rounded-md p-2 flex items-center gap-4 @if (Route::currentRouteName() == 'admin.consultains.index') bg-slate-600 text-green-300 @endif"
                 href="{{ route('admin.consultains.index') }}">
                 <p class="text-2xl my-auto block"><ion-icon class="my-auto block" name="school-outline"></ion-icon></p>
-                <p>Consultains</p>
+                <p>Consultants</p>
             </a>
         </li>
 

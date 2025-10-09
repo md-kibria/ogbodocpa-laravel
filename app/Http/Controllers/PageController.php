@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SubmitAppointmentMail;
 use App\Models\Appointment;
 use App\Models\Consultain;
 use App\Models\HomepageContent;
@@ -12,6 +13,7 @@ use App\Models\Schedule;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends Controller
 {
@@ -118,6 +120,7 @@ class PageController extends Controller
         $service_id = $request->query('service_id');
         $consultain_id = $request->query('consultain_id');
         $date = $request->query('date');
+        $notes = $request->query('notes');
         $slot_id = $request->query('slot_id');
 
         $service = Service::find($service_id);
@@ -138,10 +141,13 @@ class PageController extends Controller
             'client_name' => Auth::user()->first_name . ' ' . Auth::user()->last_name,
             'client_email' => Auth::user()->email,
             'client_phone' => Auth::user()->phone,
-            'status' => 'confirmed',
+            'notes' => $notes,
+            'status' => 'pending',
         ];
 
-        Appointment::create($data);
+        $apntmt = Appointment::create($data);
+        
+        Mail::to(Auth::user()->email)->send(new SubmitAppointmentMail($apntmt));
 
         return response()->json([
             'status' => 200,

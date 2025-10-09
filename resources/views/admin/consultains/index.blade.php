@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Consultains')
-@section('header', 'Consultains')
+@section('title', 'Consultants')
+@section('header', 'Consultants')
 
 @section('content')
 
@@ -9,7 +9,7 @@
 
     <div class="overflow-x-auto w-full pt-6 pb-4">
         <div class="flex">
-            <p class="text-lg">All Consultains</p>
+            <p class="text-lg">All Consultants</p>
             <a class="inline-block rounded-sm border border-blue-300 bg-blue-300 px-6 py-2 text-sm font-medium text-white hover:bg-transparent hover:text-blue-300 focus:ring-3 focus:outline-hidden ml-auto"
                 href="{{ route('admin.consultains.create') }}">
                 Add New
