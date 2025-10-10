@@ -84,12 +84,12 @@
                     @endif
                     @foreach ($users as $item)
                         <tr>
-                            <td class="border border-slate-700 p-3">{{ $item->name }}</td>
+                            <td class="border border-slate-700 p-3">{{ $item->first_name .' '. $item->last_name }}</td>
                             <td class="border border-slate-700 p-3 w-22">
                                 {{ \Carbon\Carbon::parse($item->created_at)->format('d M') }}
                             </td>
                             <td class="border border-slate-700 p-3">
-                                @if ($item->status == 'published')
+                                @if ($item->status == 'active')
                                     <p
                                         class="bg-green-200 text-green-600 text-center rounded-md capitalize w-fit px-2 mx-auto">
                                         {{ $item->status }}
@@ -125,7 +125,7 @@
                     @endif
                     @foreach ($appointments as $item)
                         <tr>
-                            <td class="border border-slate-700 p-3">{{ $item->user->name }}</td>
+                            <td class="border border-slate-700 p-3">{{ $item->user->first_name .' '. $item->user->last_name }}</td>
                             <td class="border border-slate-700 p-3">{{ $item->user->email }}</td>
                             <td class="border border-slate-700 p-3">{{ $item->consultain->name }}</td>
                             <td class="border border-slate-700 p-3">

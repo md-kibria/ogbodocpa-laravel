@@ -47,7 +47,7 @@ class ConsultainController extends Controller
         Consultain::create($data);
 
         return redirect()->route('admin.consultains.index')
-            ->with('success', 'Consultain created successfully.');
+            ->with('success', 'Consultant created successfully.');
     }
 
     /**
@@ -90,7 +90,7 @@ class ConsultainController extends Controller
         $consultain->update($data);
 
         return redirect()->route('admin.consultains.index')
-            ->with('success', 'Consultain updated successfully.');
+            ->with('success', 'Consultant updated successfully.');
     }
 
     /**
@@ -102,7 +102,7 @@ class ConsultainController extends Controller
         $consultain->delete();
 
         return redirect()->route('admin.consultains.index')
-            ->with('success', 'Consultain deleted successfully.');
+            ->with('success', 'Consultant deleted successfully.');
     }
 
     public function schedulesStore(Request $request, Consultain $consultain)

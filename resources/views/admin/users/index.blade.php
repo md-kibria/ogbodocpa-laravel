@@ -14,6 +14,7 @@
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Id</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Name</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Email</th>
+                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Role</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Appointments</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Join</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Status</th>
@@ -26,6 +27,7 @@
                         <td class="border border-slate-700 p-3">{{ $item->id }}</td>
                         <td class="border border-slate-700 p-3">{{ $item->first_name }}</td>
                         <td class="border border-slate-700 p-3">{{ $item->email }}</td>
+                        <td class="border border-slate-700 p-3">{{ $item->role }}</td>
                         <td class="border border-slate-700 p-3">{{ count($item->appointments) }}</td>
                         <td class="border border-slate-700 p-3">
                             {{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}

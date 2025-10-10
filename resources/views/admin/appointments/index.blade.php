@@ -15,7 +15,7 @@
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">User</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Email</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Service</th>
-                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Consultain</th>
+                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Consultant</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Date</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Schedule</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Status</th>

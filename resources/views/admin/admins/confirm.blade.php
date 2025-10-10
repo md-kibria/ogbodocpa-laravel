@@ -21,7 +21,7 @@
                 <div class="flex flex-col items-center pb-10">
                     <div class="w-24 h-24 mb-3 rounded-full shadow-lg relative">
                         <img class="w-full h-full mb-3 rounded-full"
-                            src="{{ $user->image ? asset('/storage/' . $user->image) : '/img/profile.png' }}"
+                            src="{{ $user->image ? asset('/storage/' . $user->image) : asset('/img/profile.png') }}"
                             alt="{{ $user->name }}" />
 
                         @if ($user->status === 'active')
