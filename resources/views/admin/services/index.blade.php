@@ -35,7 +35,7 @@
                     <tr class="even:bg-slate-600">
                         <td class="border border-slate-700 p-3">{{ $item->id }}</td>
                         <td class="border border-slate-700 p-3">
-                            <img class="h-10 rounded-md mx-auto" src="{{ asset('/storage/' . $item->image) }}" alt="">
+                            <img class="h-10 rounded-md mx-auto" src="{{ asset('/storage/' . $item->image) }}" alt="{{ $item->title }}">
                         </td>
                         <td class="border border-slate-700 p-3">{{ $item->title }}</td>
                         <td class="border border-slate-700 p-3">

@@ -9,9 +9,6 @@
 <meta name="description" content="@yield('description', $site_description)">
 <meta name="keywords" content="@yield('keywords', $site_keywords)">
 <meta name="author" content="{{$site_title}}">
-<title>@yield('title', $site_title) @hasSection('title')
-        - {{ $site_title }}
-    @endif
-</title>
-<title>@yield('title')</title>
+<title>@yield('title', $site_title)@hasSection('title') - {{ $site_title }}@endif</title>
+{{-- <title>@yield('title')</title> --}}
 <link rel="shortcut icon" href="{{ $logo }}" type="image/x-icon">

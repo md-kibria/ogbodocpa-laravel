@@ -69,7 +69,7 @@
                     @endif
 
 
-                    @if ($item->section !== 'appointment' && $item->section !== 'features_services' && $item->section !== 'our_philosophy')
+                    @if ($item->section !== 'appointment' && $item->section !== 'features_services')
                         <div class="flex flex-col my-1">
                             <label for="image" class="font-light my-2 text-slate-100">Image</label>
                             <input
@@ -82,7 +82,7 @@
                         </div>
                     @endif
 
-                    @if ($item->section == 'appointment')
+                    @if ($item->section == 'appointment' && false)
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
                             <div class="flex flex-col my-1">
                                 <label for="schedule" class="font-light my-2 text-slate-100">Hours</label>
@@ -133,7 +133,7 @@
 
                 </div>
 
-                @if ($item->section !== 'appointment' && $item->section !== 'features_services' && $item->section !== 'our_philosophy')
+                @if ($item->section !== 'appointment' && $item->section !== 'features_services')
                     <div class="felx">
                         <label for="title" class="block font-light my-2 text-slate-100">Preview Image</label>
                         <div class="border border-slate-700 rounded-lg p-2 flex flex-col gap-2">

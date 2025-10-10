@@ -3,7 +3,7 @@
 @section('content')
     <section class="min-h-screen bg-slate-900/70 flex flex-col justify-center relative px-2 sm:px-10">
         @if ($header->imageUrl)
-            <img src="{{ $header->imageUrl }}" alt=""
+            <img src="{{ $header->imageUrl }}" alt="{{ $header->title }}"
                 class="absolute top-0 left-0 w-full h-full object-cover opacity-100 -z-10">
         @endif
         <div class="container mx-auto py-20 sm:py-0">
@@ -32,7 +32,7 @@
                 <div class="bg-transparent ">
                     <div class="h-56 w-full overflow-hidden mb-4 rounded-sm">
                         @if ($item->image)
-                            <img src="{{ asset('/storage/' . $item->image) }}" alt=""
+                            <img src="{{ asset('/storage/' . $item->image) }}" alt="{{ $item->title }}"
                                 class="w-full h-56 mx-auto object-cover transform transition-transform duration-500 hover:scale-110">
                         @endif
                     </div>
@@ -49,7 +49,7 @@
         <div class="flex flex-col md:flex-row items-center justify-center gap-10 px-10 py-20 bg-gray-100">
             <div class="relative z-20">
                 <img class="w-full h-[400px] md:w-[400px] md:h-[500px] object-cover rounded-4xl z-20"
-                    src="{{ $about->imageUrl }}" alt="">
+                    src="{{ $about->imageUrl }}" alt="{{ $about->title }}">
                 <div
                     class="border-2 border-dashed border-slate-500 pr-5 pb-5 -pl-5 rounded-[45px] absolute top-5 left-5 -right-5 -bottom-5 -z-10">
                 </div>
@@ -77,20 +77,30 @@
 
     @if (count($services) !== 0)
         <section class="container mx-auto py-20 px-5 md:px-10 lg:px-22">
-            <h2 class="text-3xl md:text-4xl font-semibold text-center md:mb-10 text-slate-600">What We Do</h2>
-            {{-- mb-16 --}}
+            {{-- <h2 class="text-3xl md:text-4xl font-semibold text-left md:mb-10 text-blue-400 uppercase">What We Do</h2>
+            <!-- mb-16 -->
             <div class="flex justify-center md:justify-end pb-10 md:pb-3">
                 <a href="{{ route('services') }}" aria-label="Learn more about {{ $item->name }}"
                     class="text-indigo-500 mt-2 flex items-center gap-1 hover:gap-3 transition-all">
                     View All Services
                     <ion-icon name="arrow-forward-outline" class="mt-1 text-md"></ion-icon>
                 </a>
+            </div> --}}
+
+            <div class="flex items-start justify-start mb-10 flex-col">
+                <h2 class="text-3xl md:text-4xl font-semibold text-left text-blue-400 uppercase">What We Do</h2>
+                <a href="{{ route('services') }}" aria-label="Learn more about {{ $item->name }}"
+                    class="text-indigo-500 flex items-center gap-1 hover:gap-3 transition-all">
+                    View All Services
+                    <ion-icon name="arrow-forward-outline" class="mt-1 text-md"></ion-icon>
+                </a>
             </div>
+
             <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-10">
                 @foreach ($services as $item)
                     <div class="bg-transparent ">
                         <div class="h-40 w-full overflow-hidden mb-4 rounded-sm">
-                            <img src="{{ asset('/storage/' . $item->image) }}" alt=""
+                            <img src="{{ asset('/storage/' . $item->image) }}" alt="{{ $item->title }}"
                                 class="w-full h-40 mx-auto object-cover transform transition-transform duration-500 hover:scale-110">
                         </div>
                         <a href="{{ route('service', $item->slug) }}">
@@ -111,11 +121,13 @@
         </section>
     @endif
 
-    <div class="bg-blue-400">
-        <div class="container mx-auto text-white py-22 flex flex-col md:flex-row items-center justify-center">
+    <div class="relative bg-blue-500/60 h-[400px] flex items-center justify-center">
+        <img src="{{ asset('/storage/'.$philosophy->image) }}" alt="{{ $header->title }}"
+            class="absolute top-0 left-0 w-full h-full object-cover opacity-100 -z-10">
+        <div class="container mx-auto text-white flex flex-col md:flex-row items-center justify-center">
             <div class="text-center">
-                <h2 class="text-5xl font-bold mb-4">{{ $philosophy->title }}</h2>
-                <p class="mb-4 text-xl">{{ $philosophy->description }}</p>
+                <h2 class="text-4xl font-bold mb-6 uppercase">{{ $philosophy->title }}</h2>
+                <p class="mb-4 text-2xl">{{ $philosophy->description }}</p>
             </div>
         </div>
     </div>
@@ -144,7 +156,7 @@
                     class="bg-slate-50 p-6 rounded-t-lg shadow-md hover:shadow-2xl transition-shadow py-10 w-full flex flex-col items-center gap-2">
                     <h3 class="text-2xl flex items-center font-semibold text-slate-700 gap-2"><ion-icon
                             class="text-blue-500 font-bold" name="time-outline"></ion-icon> Hours</h3>
-                    <p class="text-slate-600 text-center">{{ $appointment->schedule }}</p>
+                    <p class="text-slate-600 text-center">{{ $info->business_hours }}</p>
                 </div>
                 <div class="bg-slate-50">
                     <div class="border-b border-dashed mx-6 border-slate-500"></div>
@@ -153,7 +165,9 @@
                     class="bg-slate-50 p-6 rounded-b-lg shadow-md hover:shadow-2xl transition-shadow py-10 w-full flex flex-col items-center gap-2">
                     <h3 class="text-2xl flex items-center font-semibold text-slate-700 gap-2"><ion-icon
                             class="text-blue-500 font-bold" name="location-outline"></ion-icon> Address</h3>
-                    <p class="text-slate-600 text-center w-[194px]">{{ $appointment->address }}</p>
+                    <p class="text-slate-600 text-center w-[194px]">Fax: {{ $info->fax }}</p>
+                    <p class="text-slate-600 text-center w-[194px]">Phone: {{ $info->phone }}</p>
+                    <p class="text-slate-600 text-center w-[194px]">{{ $info->address }}</p>
                 </div>
             </div>
         </div>

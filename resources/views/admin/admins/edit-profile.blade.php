@@ -14,7 +14,7 @@
             @method('PUT')
 
             @if($user->image)
-            <img src="{{ asset('/storage/'.$user->image) }}" alt="" class="w-32 h-32 rounded-full mx-auto mb-4">
+            <img src="{{ asset('/storage/'.$user->image) }}" alt="{{ $user->first_name .' '.$user->last_name }}" class="w-32 h-32 rounded-full mx-auto mb-4">
             @endif
             
             <label for="name" class="block font-light my-2 text-slate-100" style="display: none;">
@@ -34,7 +34,7 @@
                     @error('email') <span class="text-light text-red-300">{{$message}}</span> @enderror
             </label>
             <label for="image" class="block font-light my-2 text-slate-100">
-                <span class="text-sm font-medium text-gray-200"> image </span>
+                <span class="text-sm font-medium text-gray-200"> Image </span>
 
                 <input type="file" id="image"
                     class="mt-0.5 w-full rounded shadow-sm sm:text-sm border @error('image') border-red-300 @else border-gray-600 @enderror bg-gray-900 text-white py-2 px-3"

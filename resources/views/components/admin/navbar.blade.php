@@ -1,7 +1,6 @@
 <nav class="h-20 bg-transparent backdrop-blur-md right-0 left-0 top-0 z-50 sticky shadow-md">
     <div class="container mx-auto h-full flex items-center justify-between px-5 sm:px-0">
-        <a href="{ route('admin.dashboard') }}" class="text-2xl h-full flex items-center">
-            {{-- <img class="h-full" src="/logo2.png" alt=""> --}}
+        <a href="{{ route('admin.dashboard') }}" class="text-2xl h-full flex items-center">
             <span class="">
                 <div class="flex items-center gap-1">
                     <ion-icon name="construct-outline"></ion-icon>
@@ -40,7 +39,7 @@
                 <a class="h-full" href="{{ route('admin.dashboard') }}">
                     <img class="h-10 w-10 rounded-full ring-1"
                         src="{{ Auth::user()->image ? asset('/storage/' . Auth::user()->image) : asset('/img/profile.png') }}"
-                        alt="">
+                        alt="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}">
                 </a>
                 <div
                     class="hidden group-hover:block absolute right-0 top-10 bg-slate-500 text-slate-100 p-1 px-5 rounded-md">

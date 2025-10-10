@@ -40,7 +40,7 @@
                 <span class="text-sm text-gray-400">{{ $user->email }}</span>
                 <div class="flex mt-4 md:mt-6">
                     
-                        <a href="{{ route('admin.profile.edit', $user->id) }}"
+                        <a href="{{ route('profile.edit', $user->id) }}" target="_blank"
                             class="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-green-600 rounded-lg hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-800 cursor-pointer">
                             Update Profile
                 </a>

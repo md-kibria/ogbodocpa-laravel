@@ -4,7 +4,7 @@
              <div>
                  <a href="{{ route('home') }}">
                      @if ($info->footer_logo)
-                         <img src="{{ asset('/storage/' . $info->footer_logo) }}" alt="" class="h-[70px] w-auto">
+                         <img src="{{ asset('/storage/' . $info->footer_logo) }}" alt="{{ $info->title }}" class="h-[80px] w-auto">
                      @else
                          <h1 class="text-2xl font-bold text-slate-100">Logo</h1>
                      @endif
@@ -77,7 +77,7 @@
                      </ul>
                  </div>
 
-                 <div>
+                 {{-- <div>
                      <p class="text-xl font-medium text-gray-100">Helpful Links</p>
 
                      <ul class="mt-6 space-y-4 text-sm">
@@ -99,7 +99,7 @@
                                      class="text-white text-2xl">»</span> Appointment </a>
                          </li>
                      </ul>
-                 </div>
+                 </div> --}}
 
                  <div>
                      <p class="text-xl font-medium text-gray-100">Account</p>
