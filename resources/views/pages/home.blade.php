@@ -122,7 +122,7 @@
     @endif
 
     <div class="relative bg-blue-500/60 h-[400px] flex items-center justify-center">
-        <img src="{{ asset('/storage/'.$philosophy->image) }}" alt="{{ $header->title }}"
+        <img src="{{ asset('/storage/'.$philosophy->image) }}" alt="{{ $philosophy->title }}"
             class="absolute top-0 left-0 w-full h-full object-cover opacity-100 -z-10">
         <div class="container mx-auto text-white flex flex-col md:flex-row items-center justify-center">
             <div class="text-center">
