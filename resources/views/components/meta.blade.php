@@ -6,8 +6,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<meta name="description" content="@yield('description', $site_description)">
-<meta name="keywords" content="@yield('keywords', $site_keywords)">
+<meta name="description" content="@yield('description', $seo_description ?? $site_description)">
+<meta name="keywords" content="@yield('keywords', $seo_keywords)">
 <meta name="author" content="{{$site_title}}">
 <title>@yield('title', $site_title)@hasSection('title') - {{ $site_title }}@endif</title>
 {{-- <title>@yield('title')</title> --}}

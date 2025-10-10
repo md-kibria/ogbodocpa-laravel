@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @section('title', $page->name)
-@section('description', $page->description)
+@section('description', $page->seo_description)
+@section('keywords', $page->seo_keywords)
 
 {{-- title, description, content(optional), count(optional) --}}
 @section('content')

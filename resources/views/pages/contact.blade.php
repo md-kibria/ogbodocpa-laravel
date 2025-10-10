@@ -1,4 +1,9 @@
-<x-page :title="$page->name" :description="$page->description">
+<x-page 
+    :title="$page->name" 
+    :description="$page->description" 
+    :keywords="$page->seo_keywords" 
+    :seodes="$page->seo_description" 
+>
     <div class="card-body py-5">
         <p class="w-1/2 text-center mx-auto"></p>
 

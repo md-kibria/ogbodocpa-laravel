@@ -185,9 +185,11 @@ class AdminPageController extends Controller
             'slug' => 'required',
             'content' => 'required',
             'name' => 'required',
+            'seo_keywords' => 'nullable|string',
+            'seo_description' => 'nullable|string'
         ]);
         $page = Page::firstOrNew(['slug' => $request->slug]);
-        $page->update(['content' => $request->content, 'name' => $request->name]);
+        $page->update(['content' => $request->content, 'name' => $request->name, 'seo_keywords' => $request->seo_keywords, 'seo_description' => $request->seo_description]);
 
         return redirect()->back()->with('success', 'Page updated successfully');
     }
@@ -202,7 +204,9 @@ class AdminPageController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'visible' => 'nullable|boolean'
+            'visible' => 'nullable|boolean',
+            'seo_keywords' => 'nullable|string',
+            'seo_description' => 'nullable|string'
         ]);
 
         $data = $request->all();
@@ -230,7 +234,8 @@ class AdminPageController extends Controller
             'favicon' => 'nullable|image|mimes:jpeg,png,jpg,gif,ico|max:2048',
             'description' => 'nullable|string',
             'footer_description' => 'nullable|string',
-            'site_keywords' => 'nullable|string',
+            'seo_keywords' => 'nullable|string',
+            'seo_description' => 'nullable|string',
             'email' => 'nullable|email',
             'phone' => 'nullable|string',
             'fax' => 'nullable|string',
@@ -266,7 +271,8 @@ class AdminPageController extends Controller
         $siteInfo->title = $request->title ?? $siteInfo->title;
         $siteInfo->description = $request->description ?? $siteInfo->description;
         $siteInfo->footer_description = $request->footer_description ?? $siteInfo->footer_description;
-        $siteInfo->site_keywords = $request->site_keywords ?? $siteInfo->site_keywords;
+        $siteInfo->seo_keywords = $request->seo_keywords ?? $siteInfo->seo_keywords;
+        $siteInfo->seo_description = $request->seo_description ?? $siteInfo->seo_description;
         $siteInfo->email = $request->email ?? $siteInfo->email;
         $siteInfo->phone = $request->phone ?? $siteInfo->phone;
         $siteInfo->fax = $request->fax ?? $siteInfo->fax;

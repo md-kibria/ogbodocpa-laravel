@@ -1,4 +1,9 @@
-<x-page :title="$page->name" :description="$page->description" :count="count($services)">
+<x-page 
+    :title="$page->name" 
+    :description="$page->description" 
+    :keywords="$page->seo_keywords" 
+    :seodes="$page->seo_description" 
+    :count="count($services)">
 
 
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">

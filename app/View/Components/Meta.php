@@ -12,7 +12,8 @@ class Meta extends Component
     public $logo;
     public $site_title;
     public $site_description;
-    public $site_keywords;
+    public $seo_description;
+    public $seo_keywords;
     /**
      * Create a new component instance.
      */
@@ -21,7 +22,8 @@ class Meta extends Component
         $this->logo = Info::find(1)->logo ? asset('/storage/' . Info::find(1)->logo) : '' ;
         $this->site_title = Info::find(1)->title;
         $this->site_description = Info::find(1)->description;
-        $this->site_keywords = Info::find(1)->site_keywords;
+        $this->seo_description = Info::find(1)->seo_description;
+        $this->seo_keywords = Info::find(1)->seo_keywords;
     }
 
     /**

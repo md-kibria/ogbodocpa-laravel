@@ -167,6 +167,51 @@
                 </div>
             </div>
         </form>
+       
+        <form class="my-10 p-4 rounded-md border border-slate-700" action="{{ route('admin.settings.update') }}" method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            @method('POST')
+            <div class="flex items-center justify-between mb-3">
+                <h2 class="text-3xl">SEO <span class="text-lg text-slate-500">(Default & Home page)</span></h2>
+                <div>
+                    <button
+                        class="rounded shadow-sm sm:text-sm border border-gray-600 bg-blue-300 hover:bg-blue-400 text-slate-900 hover:text-white cursor-pointer py-2 px-3"
+                        type="submit">
+                        Update
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 gap-5">
+                <div class="">
+
+                    <div class="flex flex-col my-1">
+                        <label for="seo_keywords" class="font-light my-2 text-slate-100">Keywords</label>
+                        <input
+                            class="p-2 px-3 rounded-md bg-transparent ring-1 @error('seo_keywords') ring-red-300 @else ring-slate-600 @enderror"
+                            type="text" id="seo_keywords" name="seo_keywords" placeholder="SEO keywords here"
+                            value="{{ old('seo_keywords') ?? $info->seo_keywords }}">
+
+                        @error('seo_keywords')
+                            <span class="text-light text-red-300">{{ $message }}</span>
+                        @enderror
+                    </div>
+                    
+                    <div class="flex flex-col my-1">
+                        <label for="seo_description" class="font-light my-2 text-slate-100">Description</label>
+                        <textarea
+                            class="p-2 px-3 rounded-md bg-transparent ring-1 @error('seo_description') ring-red-300 @else ring-slate-600 @enderror"
+                            type="text" id="seo_description" rows="3" name="seo_description" placeholder="SEO description here">{{ old('seo_description') ?? $info->seo_description }}</textarea>
+
+                        @error('seo_description')
+                            <span class="text-light text-red-300">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                </div>
+            </div>
+        </form>
 
         <form class="my-10 p-4 rounded-md border border-slate-700" action="{{ route('admin.settings.media.update') }}"
             method="POST" enctype="multipart/form-data">

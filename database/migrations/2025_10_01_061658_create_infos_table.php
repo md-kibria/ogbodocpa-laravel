@@ -19,7 +19,8 @@ return new class extends Migration
             $table->string('favicon')->nullable();
             $table->text('description')->nullable();
             $table->text('footer_description')->nullable();
-            $table->text('site_keywords')->nullable();
+            $table->text('seo_keywords')->nullable();
+            $table->text('seo_description')->nullable();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('fax')->nullable();

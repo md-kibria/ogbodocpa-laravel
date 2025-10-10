@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->longText('content')->nullable();
             $table->boolean('visible')->default(true);
+            $table->text('seo_keywords')->nullable();
+            $table->text('seo_description')->nullable();
             $table->timestamps();
         });
     }

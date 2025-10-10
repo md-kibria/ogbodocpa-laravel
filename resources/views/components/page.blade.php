@@ -1,7 +1,8 @@
 @extends('layouts.main')
 
 @section('title', $title)
-@section('description', $description)
+@section('keywords', $keywords)
+@section('description', $seodes)
 
 {{-- title, description, content(optional), count(optional) --}}
 @section('content')
