@@ -1,9 +1,4 @@
-<x-page 
-    :title="$page->name" 
-    :description="$page->description" 
-    :keywords="$page->seo_keywords" 
-    :seodes="$page->seo_description" 
->
+<x-page :title="$page->name" :description="$page->description" :keywords="$page->seo_keywords" :seodes="$page->seo_description">
     <div class="card-body py-5">
         <p class="w-1/2 text-center mx-auto"></p>
 
@@ -36,6 +31,9 @@
                         @enderror
                     </div>
 
+                    {{-- reCAPTCHA --}}
+                    {!! NoCaptcha::renderJs() !!}
+                    {!! NoCaptcha::display() !!}
 
                     @if ($errors->has('g-recaptcha-response'))
                         <span class="text-red-500 text-sm">{{ $errors->first('g-recaptcha-response') }}</span>

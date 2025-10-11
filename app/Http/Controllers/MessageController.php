@@ -18,6 +18,7 @@ class MessageController extends Controller
             'name' => 'required',
             'email' => 'required',
             'message' => 'required',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         Message::create($request->all());

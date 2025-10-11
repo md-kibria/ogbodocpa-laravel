@@ -27,15 +27,22 @@
                         <span class="text-red-500 text-sm">{{ $message }}</span>
                     @enderror
                 </div>
+                
+                {{-- reCAPTCHA --}}
+                {!! NoCaptcha::renderJs() !!}
+                {!! NoCaptcha::display() !!}
 
                 @if ($errors->has('g-recaptcha-response'))
                     <span class="text-red-500 text-sm">{{ $errors->first('g-recaptcha-response') }}</span>
                 @endif
+
                 <div class="text-left mt-4 pb-3">
                     <p class="text-sm text-gray-400">
                         <a href="{{ route('reset-req') }}" class="text-blue-500 hover:text-blue-600">Forgot password?</a>
                     </p>
                 </div>
+
+
                 <button type="submit"
                     class="w-full border border-blue-500 bg-gradient-to-r from-blue-500 to-blue-700 text-white hover:bg-none hover:text-blue-500 py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition duration-300 ease-in-out cursor-pointer">
                     Submit

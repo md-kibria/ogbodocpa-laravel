@@ -26,7 +26,7 @@ class AuthController extends Controller
             // 'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            // 'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         // Create the user
@@ -59,7 +59,7 @@ class AuthController extends Controller
         $credentials = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
-            // 'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
         ]);
 
         if (Auth::attempt(['email' => $credentials['email'], 'password' => $credentials['password']])) {
