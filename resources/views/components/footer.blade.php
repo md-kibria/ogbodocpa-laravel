@@ -1,7 +1,8 @@
  <footer class="bg-slate-700">
      <div class="mx-auto max-w-screen-xl space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
-         <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
-             <div>
+         <div class="grid grid-cols-1 gap-8 lg:grid-cols-5">
+             <div class="lg:col-span-2">
+                 {{-- Logo --}}
                  <a href="{{ route('home') }}">
                      @if ($info->footer_logo)
                          <img src="{{ asset('/storage/' . $info->footer_logo) }}" alt="{{ $info->title }}" class="h-[80px] w-auto">
@@ -10,7 +11,7 @@
                      @endif
                  </a>
 
-                 <p class="mt-4 max-w-xs text-gray-300">
+                 <p class="mt-4 max-w-md text-gray-300">
                      {{ $info->footer_description }}
                  </p>
 
@@ -28,7 +29,7 @@
                  </ul>
              </div>
 
-             <div class="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:col-span-2 lg:grid-cols-4">
+             <div class="grid grid-cols-2 gap-8 sm:grid-cols-3 lg:col-span-3 lg:grid-cols-3">
                  <div>
                      <p class="text-xl font-medium text-gray-100">Content</p>
 
