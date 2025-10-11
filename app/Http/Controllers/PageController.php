@@ -8,6 +8,7 @@ use App\Models\Consultain;
 use App\Models\HomepageContent;
 use App\Models\Info;
 use App\Models\Page;
+use App\Models\Partner;
 use App\Models\Resource;
 use App\Models\Schedule;
 use App\Models\Service;
@@ -29,8 +30,9 @@ class PageController extends Controller
         $features_3 = HomepageContent::where('section', 'features_3')->first();
         $philosophy = HomepageContent::where('section', 'our_philosophy')->first();
         $services = Service::orderBy('id', 'desc')->take(3)->get();
+        $partners = Partner::orderBy('id', 'desc')->get();
 
-        return view('pages.home', compact('info', 'header', 'about', 'appointment', 'features_1', 'features_2', 'features_3', 'philosophy', 'services'));
+        return view('pages.home', compact('info', 'header', 'about', 'appointment', 'features_1', 'features_2', 'features_3', 'philosophy', 'services', 'partners'));
     }
 
     public function services()

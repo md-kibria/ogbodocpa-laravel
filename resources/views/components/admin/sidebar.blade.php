@@ -44,6 +44,13 @@
                 <p>Consultants</p>
             </a>
         </li>
+        <li>
+            <a class="my-1 py-2 hover:bg-slate-500 rounded-md p-2 flex items-center gap-4 @if (Route::currentRouteName() == 'admin.partners.index') bg-slate-600 text-green-300 @endif"
+                href="{{ route('admin.partners.index') }}">
+                <p class="text-2xl my-auto block"><ion-icon class="my-auto block" name="ribbon-outline"></ion-icon></p>
+                <p>Partners</p>
+            </a>
+        </li>
 
         <li>
             <a class="my-1 py-2 hover:bg-slate-500 rounded-md p-2 flex items-center gap-4 @if (Route::currentRouteName() == 'admin.home') bg-slate-600 text-green-300 @endif"

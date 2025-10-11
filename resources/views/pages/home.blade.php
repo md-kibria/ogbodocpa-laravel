@@ -122,7 +122,7 @@
     @endif
 
     <div class="relative bg-blue-500/60 h-[400px] flex items-center justify-center">
-        <img src="{{ asset('/storage/'.$philosophy->image) }}" alt="{{ $philosophy->title }}"
+        <img src="{{ asset('/storage/' . $philosophy->image) }}" alt="{{ $philosophy->title }}"
             class="absolute top-0 left-0 w-full h-full object-cover opacity-100 -z-10">
         <div class="container mx-auto text-white flex flex-col md:flex-row items-center justify-center">
             <div class="text-center">
@@ -165,115 +165,43 @@
                     class="bg-slate-50 p-6 rounded-b-lg shadow-md hover:shadow-2xl transition-shadow py-10 w-full flex flex-col items-center gap-2">
                     <h3 class="text-2xl flex items-center font-semibold text-slate-700 gap-2"><ion-icon
                             class="text-blue-500 font-bold" name="location-outline"></ion-icon> Address</h3>
-                    <p class="text-slate-600 text-center w-[194px]">Fax: {{ $info->fax }}</p>
-                    <p class="text-slate-600 text-center w-[194px]">Phone: {{ $info->phone }}</p>
                     <p class="text-slate-600 text-center w-[194px]">{{ $info->address }}</p>
+                    <p class="text-slate-600 text-center w-[194px]">Phone: {{ $info->phone }} <br/> Fax: {{ $info->fax }} </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section>
-        <div class="w-full min-h-screen flex items-center justify-center rounded-lg p-6 z-20 bg-gray-100">
-            <div class="bg-white md:w-3/4 lg:w-3/4 mx-auto rounded-lg shadow-lg p-6 text-gray-400">
-                <div class="card-body py-5">
-                    <p class="w-1/2 text-center mx-auto"></p>
+    @if (count($partners) !== 0)
+        <section class="bg-gray-200">
+            <div class="container mx-auto py-20 px-5 md:px-10 lg:px-22">
 
-                    <div class="flex flex-wrap">
-                        <form action="{{ route('message.store') }}" method="POST"
-                            class="w-full lg:w-1/2 px-5 lg:border-r border-gray-300">
-                            @csrf
-                            <div class="space-y-4">
-                                <b class="text-gray-400 text-sm font-semibold">Available 24/7</b>
-                                <h2 class="text-2xl text-gray-600 font-semibold">Get In Touch</h2>
-                                <div>
-                                    <input type="text" name="name" id="firstNameinput"
-                                        placeholder="Enter your name"
-                                        class="w-full border @error('name') border-red-300 @else border-gray-300 @enderror rounded px-2 py-1.5">
-                                    @error('name')
-                                        <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div>
-                                    <input type="text" name="email" id="email"
-                                        placeholder="Enter your email address"
-                                        class="w-full border @error('email') border-red-300 @else border-gray-300 @enderror rounded px-2 py-1.5">
-                                    @error('email')
-                                        <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div>
-                                    <textarea name="message" id="message" placeholder="Enter your message" cols="30" rows="6"
-                                        class="w-full border @error('message') border-red-300 @else border-gray-300 @enderror rounded px-2 py-1.5"></textarea>
-                                    @error('message')
-                                        <span class="text-red-500">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div>
-                                    <button type="submit"
-                                        class="w-full bg-blue-400 hover:bg-blue-300 text-white py-2 rounded cursor-pointer">Submit</button>
-                                </div>
-                            </div>
-                        </form>
+                <div class="flex items-start justify-start mb-10 flex-col">
+                    <h2 class="text-3xl md:text-4xl font-semibold text-left text-blue-400 uppercase">our partners</h2>
+                    {{-- <a href="{{ route('services') }}" aria-label="Learn more about {{ $item->name }}"
+                        class="text-indigo-500 flex items-center gap-1 hover:gap-3 transition-all">
+                        View All Services
+                        <ion-icon name="arrow-forward-outline" class="mt-1 text-md"></ion-icon>
+                    </a> --}}
+                </div>
 
-                        <div class="w-full lg:w-1/2 px-5 pt-10 lg:pt-0 flex flex-col justify-center space-y-3">
-                            <div class="flex items-center space-x-4">
-                                <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
-                                    <ion-icon name="location-outline" class="text-2xl text-gray-500"></ion-icon>
-                                </div>
-                                <div class="flex-grow text-gray-600">
-                                    <h3 class="text-xl font-semibold mb-0.5">Location</h3>
-                                    <p class="border-b border-gray-300 text-sm pb-0.5">{{ $info->address }}</p>
-                                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-10">
+                    @foreach ($partners as $item)
+                        @if ($item->url)
+                            <a href="{{ $item->url }}" target="_blank"
+                                class="h-46 w-full overflow-hidden rounded-md">
+                                <img src="{{ asset('/storage/' . $item->logo) }}" alt="{{ $item->name }}"
+                                    class="h-full w-full object-cover transform transition-transform duration-500 hover:scale-110 rounded-md">
+                            </a>
+                        @else
+                            <div class="h-46 w-full overflow-hidden rounded-md">
+                                <img src="{{ asset('/storage/' . $item->logo) }}" alt="{{ $item->name }}"
+                                    class="h-full w-full object-cover transform transition-transform duration-500 hover:scale-110 rounded-md">
                             </div>
-
-                            <div class="flex items-center space-x-4">
-                                <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
-                                    <ion-icon name="call-outline" class="text-2xl text-gray-500"></ion-icon>
-                                </div>
-                                <div class="flex-grow text-gray-600">
-                                    <h3 class="text-xl font-semibold mb-0.5">Phone Number</h3>
-                                    <a href="tel:{{ $info->phone ? $info->phone : '' }}"
-                                        class="block border-b border-gray-300 text-sm pb-0.5 text-gray-600">{{ $info->phone }}</a>
-                                </div>
-                            </div>
-
-                            <div class="flex items-center space-x-4">
-                                <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
-                                    <ion-icon name="print-outline" class="text-2xl text-gray-500"></ion-icon>
-                                </div>
-                                <div class="flex-grow text-gray-600">
-                                    <h3 class="text-xl font-semibold mb-0.5">Fax Number</h3>
-                                    <span
-                                        class="block border-b border-gray-300 text-sm pb-0.5 text-gray-600">{{ $info->fax }}</span>
-                                </div>
-                            </div>
-                            <div class="flex items-center space-x-4">
-                                <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
-                                    <ion-icon name="time-outline" class="text-2xl text-gray-500"></ion-icon>
-                                </div>
-                                <div class="flex-grow text-gray-600">
-                                    <h3 class="text-xl font-semibold mb-0.5">Business Hours</h3>
-                                    <span
-                                        class="block border-b border-gray-300 text-sm pb-0.5 text-gray-600">{{ $info->business_hours }}</span>
-                                </div>
-                            </div>
-                            {{-- <div class="flex items-center space-x-4">
-                                <div class="flex items-center justify-center border border-gray-500 rounded-full h-9 w-9">
-                                    <ion-icon name="mail-outline" class="text-2xl text-gray-500"></ion-icon>
-                                </div>
-                                <div class="flex-grow text-gray-600">
-                                    <h3 class="text-xl font-semibold mb-0.5">Email Address</h3>
-                                    <a href="mailto:{{ $info->email ? $info->email : '' }}"
-                                        class="block border-b border-gray-300 text-sm pb-0.5 text-gray-600">{{ $info->email }}</a>
-                                </div>
-                            </div> --}}
-                        </div>
-                    </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
-
-        </div>
-
-    </section>
+        </section>
+    @endif
 @endsection

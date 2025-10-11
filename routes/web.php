@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ConsultainController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ServiceController;
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'profile'])->name('profile');
     Route::get('/profile/update', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile/update/{user}', [ProfileController::class, 'update'])->name('profile.update');
-    
+
     Route::get('/profile/appointments', [ProfileController::class, 'appointments'])->name('profile.appointments');
     Route::put('/profile/appointments/cancel/{appointment}', [AdminPageController::class, 'appointmentCancel'])->name('profile.appointments.cancel');
 
@@ -68,6 +69,9 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
 
     Route::resource('/consultains', ConsultainController::class)
         ->names('consultains');
+
+    Route::resource('/partners', PartnerController::class)
+        ->names('partners');
 
     Route::post('/consultains/{consultain}/schedules', [ConsultainController::class, 'schedulesStore'])->name('consultains.schedules.store');
     Route::delete('/consultains/schedules/{schedule}', [ConsultainController::class, 'schedulesDelete'])->name('consultains.schedules.destroy');
@@ -116,7 +120,7 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
 });
 
 
-Route::get('/test', function() {
+Route::get('/test', function () {
     $appointment = Appointment::first();
     $info = Info::first();
     // return view('emails.appointment-reject', compact('appointment', 'info'));
