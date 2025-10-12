@@ -11,12 +11,6 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ResourceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
-use App\Mail\ConfirmAppointmentMail;
-use App\Mail\RejectAppointmentMail;
-use App\Mail\SubmitAppointmentMail;
-use App\Models\Appointment;
-use App\Models\Info;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
@@ -120,12 +114,3 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
 });
 
 Route::get('sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
-
-Route::get('/test', function () {
-    $appointment = Appointment::first();
-    $info = Info::first();
-    // return view('emails.appointment-reject', compact('appointment', 'info'));
-    Mail::to('mrdev774@gmail.com')->send(new RejectAppointmentMail($appointment));
-
-    return "Email Sent";
-});

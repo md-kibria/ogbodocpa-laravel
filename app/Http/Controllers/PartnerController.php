@@ -32,7 +32,7 @@ class PartnerController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'logo' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'logo' => 'required|image|mimes:png|max:2048',
             'url' => 'nullable|string|max:255'
         ]);
 
