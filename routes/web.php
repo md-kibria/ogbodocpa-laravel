@@ -114,3 +114,4 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
 });
 
 Route::get('sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
+
