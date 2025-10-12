@@ -1,2 +1,7 @@
 User-agent: *
-Disallow:
+Disallow: /admin/
+Disallow: /login/
+Disallow: /signup/
+Allow: /
+
+Sitemap: https://ogbodocpa.dreamhosters.com/public/sitemap.xml

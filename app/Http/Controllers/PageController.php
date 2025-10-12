@@ -172,4 +172,16 @@ class PageController extends Controller
 
         return view('pages.resources', compact('resources', 'page'));
     }
+
+    public function sitemap() {
+        $services = Service::all();
+        $pages = Page::all();
+        $resources = Resource::all();
+
+        return response()->view('sitemap', [
+            'services' => $services,
+            'pages' => $pages,
+            'resources' => $resources,
+        ])->header('Content-Type', 'application/xml');
+    }
 }

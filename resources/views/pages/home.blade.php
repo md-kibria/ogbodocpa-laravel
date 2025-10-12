@@ -177,7 +177,7 @@
             <div class="container mx-auto py-20 px-5 md:px-10 lg:px-22">
 
                 <div class="flex items-start justify-start mb-10 flex-col">
-                    <h2 class="text-3xl md:text-4xl font-semibold text-left text-blue-400 uppercase">our partners</h2>
+                    {{-- <h2 class="text-3xl md:text-4xl font-semibold text-left text-blue-400 uppercase">our partners</h2> --}}
                     {{-- <a href="{{ route('services') }}" aria-label="Learn more about {{ $item->name }}"
                         class="text-indigo-500 flex items-center gap-1 hover:gap-3 transition-all">
                         View All Services
@@ -185,18 +185,18 @@
                     </a> --}}
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-10">
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10">
                     @foreach ($partners as $item)
                         @if ($item->url)
                             <a href="{{ $item->url }}" target="_blank"
-                                class="h-46 w-full overflow-hidden rounded-md">
+                                class="h-fit w-full overflow-hidden rounded-md">
                                 <img src="{{ asset('/storage/' . $item->logo) }}" alt="{{ $item->name }}"
-                                    class="h-full w-full object-cover transform transition-transform duration-500 hover:scale-110 rounded-md">
+                                    class="h-full w-full object-cover transform transition-transform duration-500 hover:scale-105 rounded-md filter grayscale">
                             </a>
                         @else
-                            <div class="h-46 w-full overflow-hidden rounded-md">
+                            <div class="h-fit w-full overflow-hidden rounded-md">
                                 <img src="{{ asset('/storage/' . $item->logo) }}" alt="{{ $item->name }}"
-                                    class="h-full w-full object-cover transform transition-transform duration-500 hover:scale-110 rounded-md">
+                                    class="h-full w-full object-cover transform transition-transform duration-500 hover:scale-105 rounded-md filter grayscale">
                             </div>
                         @endif
                     @endforeach

@@ -119,6 +119,7 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
     Route::post('/settings-media-update', [AdminPageController::class, 'settingMediaUpdate'])->name('settings.media.update');
 });
 
+Route::get('sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 
 Route::get('/test', function () {
     $appointment = Appointment::first();
