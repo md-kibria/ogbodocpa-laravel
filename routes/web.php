@@ -111,6 +111,8 @@ Route::prefix('admin')->middleware('admin')->name('admin.')->group(function () {
     Route::get('/settings', [AdminPageController::class, 'settings'])->name('settings');
     Route::post('/settings-update', [AdminPageController::class, 'settingUpdate'])->name('settings.update');
     Route::post('/settings-media-update', [AdminPageController::class, 'settingMediaUpdate'])->name('settings.media.update');
+
+    Route::post('/upload-image', [PageController::class, 'upload'])->name('upload');
 });
 
 Route::get('sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');

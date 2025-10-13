@@ -7,13 +7,13 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{url('/apple-touch-icon.png')}}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{{url('/favicon-96x96.png')}}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ url('/favicon-96x96.png') }}">
     {{-- <link rel="icon" type="image/png" sizes="192x192" href="/web-app-manifest-192x192.png">
     <link rel="icon" type="image/png" sizes="512x512" href="/web-app-manifest-512x512.png"> --}}
-    <link rel="icon" type="image/svg+xml" href="{{url('/favicon.svg')}}">
-    <link rel="manifest" href="{{url('/site.webmanifest')}}">
-    <link rel="shortcut icon" href="{{url('/favicon.ico')}}">
+    <link rel="icon" type="image/svg+xml" href="{{ url('/favicon.svg') }}">
+    <link rel="manifest" href="{{ url('/site.webmanifest') }}">
+    <link rel="shortcut icon" href="{{ url('/favicon.ico') }}">
 
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,6 +21,45 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
+
+    @verbatim
+    <!-- Local Business Schema -->
+    <script type="application/ld+json">
+        {
+        "@context": "https://schema.org",
+        "@type": "AccountingService",
+        "name": "Christopher Chime Ogbodo & Associates CPA",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "4225 Telegraph Avenue",
+            "addressLocality": "Oakland",
+            "addressRegion": "CA",
+            "postalCode": "94609"
+        },
+        "image": "https://www.ogbodocpa.com/public/storage/images/V84heIziLxGzX1n0iIDlyQutSa9GbWgnxpu2TMR8.jpg",
+        "email": "info@ogbodocpa.com",
+        "telephone": "510-625-6213",
+        "faxNumber": "510-652-6230",
+        "url": "https://www.ogbodocpa.com/",
+        "paymentAccepted": ["cash", "check", "credit card", "invoice"],
+        "openingHoursSpecification": [{
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+            "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "17:00"
+        }],
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "37.831290",
+            "longitude": "-122.264149"
+        },
+        "priceRange": "$$"
+        }
+    </script>
+    @endverbatim
+
 </head>
 
 <body>

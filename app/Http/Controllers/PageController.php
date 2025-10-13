@@ -148,7 +148,7 @@ class PageController extends Controller
         ];
 
         $apntmt = Appointment::create($data);
-        
+
         Mail::to(Auth::user()->email)->send(new SubmitAppointmentMail($apntmt));
 
         return response()->json([
@@ -173,7 +173,8 @@ class PageController extends Controller
         return view('pages.resources', compact('resources', 'page'));
     }
 
-    public function sitemap() {
+    public function sitemap()
+    {
         $services = Service::all();
         $pages = Page::all();
         $resources = Resource::all();
@@ -183,5 +184,16 @@ class PageController extends Controller
             'pages' => $pages,
             'resources' => $resources,
         ])->header('Content-Type', 'application/xml');
+    }
+
+    // Upload image
+    public function upload(Request $request)
+    {
+        if ($request->hasFile('file')) {
+            $path = $request->file('file')->store('uploads', 'public');
+
+            return response()->json(['location' => asset('storage/' . $path)], 200);
+        }
+        return response()->json(['error' => 'Upload failed'], 400);
     }
 }
