@@ -4,4 +4,4 @@ Disallow: /login/
 Disallow: /signup/
 Allow: /
 
-Sitemap: https://ogbodocpa.dreamhosters.com/public/sitemap.xml
+Sitemap: https://www.ogbodocpa.com/sitemap.xml

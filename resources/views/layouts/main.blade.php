@@ -36,7 +36,7 @@
             "addressRegion": "CA",
             "postalCode": "94609"
         },
-        "image": "https://www.ogbodocpa.com/public/storage/images/V84heIziLxGzX1n0iIDlyQutSa9GbWgnxpu2TMR8.jpg",
+        "image": "https://www.ogbodocpa.com/storage/images/V84heIziLxGzX1n0iIDlyQutSa9GbWgnxpu2TMR8.jpg",
         "email": "info@ogbodocpa.com",
         "telephone": "510-625-6213",
         "faxNumber": "510-652-6230",
