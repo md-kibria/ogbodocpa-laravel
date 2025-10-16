@@ -58,15 +58,15 @@
 <div
     class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen flex items-center justify-center overflow-hidden">
     <!-- Animated background elements -->
-    <div
+    {{-- <div
         class="absolute top-10 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob">
     </div>
-    {{-- <div
+    <div
         class="absolute top-1/2 right-10 w-72 h-72 bg-indigo-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000">
-    </div> --}}
+    </div>
     <div
         class="absolute bottom-10 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000">
-    </div>
+    </div> --}}
 
     <!-- Main content -->
     <div class="relative z-10 text-center px-6 max-w-2xl">
@@ -115,7 +115,7 @@
         <!-- Fun fact -->
         <div class="mt-12 pt-8 border-t border-purple-500/30">
             <p class="text-gray-400 text-sm">
-                Fun fact: In web history, 404 errors have become legendary. This one was specially crafted for you! ✨
+                Fun fact: In web history, 404 errors have become legendary. This one was specially crafted for you!
             </p>
         </div>
     </div>
