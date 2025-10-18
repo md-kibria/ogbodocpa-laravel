@@ -11,7 +11,7 @@ class Consultain extends Model
         'email',
         'phone',
         'address',
-        'service_id',
+        'services',
     ];
 
     // Relationships
@@ -20,8 +20,14 @@ class Consultain extends Model
         return $this->hasMany(Schedule::class);
     }
 
-    public function service()
+    public function services()
     {
-        return $this->belongsTo(Service::class);
+        if (empty($this->services)) {
+            return collect();
+        }
+        
+        $serviceIds = is_string($this->services) ? json_decode($this->services, true) : $this->services;
+        
+        return Service::whereIn('id', $serviceIds ?? [])->get();
     }
 }

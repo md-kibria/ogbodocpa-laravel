@@ -21,7 +21,7 @@
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Id</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Name</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Email</th>
-                    <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Service</th>
+                    {{-- <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Service</th> --}}
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Date</th>
                     <th class="border border-slate-600 bg-slate-700 p-3 text-sm">Action</th>
                 </tr>
@@ -37,7 +37,7 @@
                         <td class="border border-slate-700 p-3">{{ $item->id }}</td>
                         <td class="border border-slate-700 p-3">{{ $item->name }}</td>
                         <td class="border border-slate-700 p-3">{{ $item->email }}</td>
-                        <td class="border border-slate-700 p-3">{{ $item->service->title }}</td>
+                        {{-- <td class="border border-slate-700 p-3">{{ $item->service }}</td> --}}
                         <td class="border border-slate-700 p-3">
                             {{ \Carbon\Carbon::parse($item->created_at)->toFormattedDateString() }}
                         </td>

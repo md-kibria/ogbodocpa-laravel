@@ -32,8 +32,18 @@
                         <span class="text-white">{{ $consultain?->address ?? 'Null' }}</span>
                     </li>
                     <li class="flex items-center">
-                        <span class="font-semibold text-gray-400 w-[90px]">Service: </span>
-                        <span class="text-white">{{ $consultain?->service->title }}</span>
+                        <span class="font-semibold text-gray-400 w-[90px]">Services: </span>
+                        <span class="text-white">
+                            @if($consultain->services)
+                                @php
+                                    $serviceIds = is_string($consultain->services) ? json_decode($consultain->services, true) : $consultain->services;
+                                    $serviceTitles = \App\Models\Service::whereIn('id', $serviceIds ?? [])->pluck('title')->toArray();
+                                @endphp
+                                {{ implode(', ', $serviceTitles) }}
+                            @else
+                                No services assigned
+                            @endif
+                        </span>
                     </li>
 
                 </ul>

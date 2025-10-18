@@ -67,7 +67,8 @@ class PageController extends Controller
 
     public function appointmentConsultain(Service $service)
     {
-        return response()->json($service->consultains);
+        $consultains = Consultain::whereJsonContains('services', (string)$service->id)->get();
+        return response()->json($consultains);
     }
 
     public function consultainSchedule(Consultain $consultain)

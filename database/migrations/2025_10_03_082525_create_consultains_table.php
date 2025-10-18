@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
-            $table->unsignedBigInteger('service_id'); // foreign key (service)
+            $table->json('services')->nullable(); // stores array of service ids
             $table->timestamps();
         });
     }

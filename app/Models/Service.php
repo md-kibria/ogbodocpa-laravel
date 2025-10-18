@@ -17,8 +17,12 @@ class Service extends Model
     ];
 
     // Relationships
+    // public function consultains()
+    // {
+    //     return $this->hasMany(Consultain::class);
+    // }
     public function consultains()
     {
-        return $this->hasMany(Consultain::class);
+        return Consultain::whereJsonContains('services', (string)$this->id)->get();
     }
 }

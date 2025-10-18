@@ -34,15 +34,19 @@ class ConsultainController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'service_id' => 'required|exists:services,id',
+            'services' => 'required|array|min:1',
+            'services.*' => 'exists:services,id',
         ]);
 
         $data = $request->all();
+        $services = (array) $request->input('services', []);
+        $data['services'] = json_encode(array_values($services));
 
         Consultain::create($data);
 
@@ -81,11 +85,14 @@ class ConsultainController extends Controller
             'email' => 'nullable|email|max:255',
             'phone' => 'nullable|string|max:20',
             'address' => 'nullable|string|max:255',
-            'service_id' => 'required|exists:services,id',
+            'services' => 'required|array|min:1',
+            'services.*' => 'exists:services,id',
         ]);
 
         $consultain = Consultain::findOrFail($id);
         $data = $request->all();
+        $services = (array) $request->input('services', []);
+        $data['services'] = json_encode(array_values($services));
 
         $consultain->update($data);
 

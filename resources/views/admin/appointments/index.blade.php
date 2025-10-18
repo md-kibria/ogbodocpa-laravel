@@ -26,7 +26,7 @@
                 @foreach ($appointments as $item)
                     <tr class="even:bg-slate-600">
                         <td class="border border-slate-700 p-3">{{ $item->id }}</td>
-                        <td class="border border-slate-700 p-3">{{ $item->user->name }}</td>
+                        <td class="border border-slate-700 p-3">{{ $item->user->first_name .' '. $item->user->last_name }}</td>
                         <td class="border border-slate-700 p-3">{{ $item->user->email }}</td>
                         <td class="border border-slate-700 p-3">{{ $item->service->title }}</td>
                         <td class="border border-slate-700 p-3">{{ $item->consultain->name }}</td>
