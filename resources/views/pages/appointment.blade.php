@@ -117,6 +117,10 @@
                 <div class="bg-salte-600">
                     <h3 class="mb-4 text-lg font-medium leading-none text-gray-900 dark:text-white">Select Time Slot</h3>
 
+                    <div class="bg-gray-300 border border-gray-200 rounded-md p-4 hidden" id="noslot">
+                        <p class="text-gray-600 text-sm">Please call {{$info->phone}} to speak to a representative.</p>
+                    </div>
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6" id="timeSlots">
                         {{-- <div class="flex flex-col border border-slate-600 items-center w-full p-4 rounded-lg">
                             <h3 class="text-slate-800 text-center w-full text-2xl font-semibold pt-2">10:00 AM</h3>
@@ -136,6 +140,10 @@
                             class="bg-sky-500 hover:bg-sky-600 text-white font-medium px-6 py-2 rounded-md transition-colors">
                             CONTINUE
                         </button>
+                        <button id="continuedis" 
+                            class="hidden bg-gray-500 hover:bg-gray-600 text-white font-medium px-6 py-2 rounded-md transition-colors">
+                            CONTINUE
+                        </button>
                     </div>
                 </div>
             </div>
@@ -147,19 +155,19 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="flex justify-between py-2 border-b border-gray-200">
                             <span class="font-medium text-gray-200">Service:</span>
-                            <span class="text-gray-100" id="preview_title">General Consultation</span>
+                            <span class="text-gray-100" id="preview_title">Please select service</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-gray-200">
                             <span class="font-medium text-gray-200">Date:</span>
-                            <span class="text-gray-100" id="preview_date">10/03/2025</span>
+                            <span class="text-gray-100" id="preview_date">Please select date</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-gray-200">
                             <span class="font-medium text-gray-200">Time:</span>
-                            <span class="text-gray-100" id="preview_time">09:00 AM</span>
+                            <span class="text-gray-100" id="preview_time">Please select time</span>
                         </div>
                         <div class="flex justify-between py-2 border-b border-gray-200">
                             <span class="font-medium text-gray-200">Provider:</span>
-                            <span class="text-gray-100" id="preview_name">Dr. Sarah Johnson</span>
+                            <span class="text-gray-100" id="preview_name">Please select provider</span>
                         </div>
                     </div>
 
@@ -446,6 +454,16 @@
                         )
                         .then(response => response.json())
                         .then(data => {
+                            if(data.length === 0) {
+                                document.getElementById('noslot').classList.remove('hidden')
+                                document.getElementById('continue').classList.add('hidden')
+                                document.getElementById('continuedis').classList.remove('hidden')
+                            } else {
+                                document.getElementById('noslot').classList.add('hidden')
+                                document.getElementById('continue').classList.remove('hidden')
+                                document.getElementById('continuedis').classList.add('hidden')
+                            }
+
                             timeSlots.innerHTML = '';
                             data.forEach(slot => {
                                 const slotDiv = document.createElement('div');
@@ -532,7 +550,7 @@
                         .then(data => {
                             sessionStorage.setItem('message',
                                 `${new Date(data.date).toLocaleDateString('en-US', {year: 'numeric',month: 'long',day: 'numeric'})} at ${new Date('1970-01-01T' + data.time_slot.start_time).toLocaleTimeString([], {hour: '2-digit',minute: '2-digit',hour12: true})} <br/> with ${data.consultain.name}`
-                                );
+                            );
 
                             // Update confirmation step with fetched data
                             document.querySelector('#preview_title').textContent = data
